@@ -157,6 +157,19 @@ extension Gen where Value: Collection {
   }
 }
 
+extension Gen where Value: CaseIterable {
+  /// Produces a generator of all case-iterable cases.
+  public static var allCases: Gen<Value?> {
+    return allCases(of: Value.self)
+  }
+
+  /// Produces a generator of all case-iterable cases.
+  public static func allCases(of type: Value.Type) -> Gen<Value?> {
+    // TODO: Should we unsafely-unwrap the element?
+    return Gen<Value.AllCases>.always(Value.allCases).element
+  }
+}
+
 extension Sequence {
   /// Transforms each value of an array of generators before rewrapping the array in an array generator.
   ///

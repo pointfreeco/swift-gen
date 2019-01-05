@@ -3,6 +3,9 @@ import XCTest
 
 final class GenTests: XCTestCase {
   func testExample() {
+    enum Light: CaseIterable {
+      case red, green, yellow
+    }
   }
   
   static var allTests = [
