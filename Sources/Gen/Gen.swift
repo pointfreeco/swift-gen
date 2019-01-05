@@ -13,6 +13,10 @@ public struct Gen<Value> {
   /// - Returns: A random value.
   @inlinable @inline(__always)
   public func run<G: RandomNumberGenerator>(using rng: inout G) -> Value {
+    if var arng = rng as? AnyRandomNumberGenerator {
+      defer { rng = arng as! G }
+      return self._gen(&arng)
+    }
     var arng = AnyRandomNumberGenerator(rng)
     defer { rng = arng._rng as! G }
     return self._gen(&arng)
