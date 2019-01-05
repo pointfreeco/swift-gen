@@ -34,7 +34,7 @@ let nLines = 80
 let dx = (xMax - xMin) / CGFloat(nPoints)
 let dy = (yMax - yMin) / CGFloat(nLines)
 
-@inlinable @inline(__always)
+@inlinable
 func normal(mu: CGFloat, sigma: CGFloat) -> Gen<CGFloat> {
   return Gen.float(in: -1...1).array(of: .always(6))
     .map { (xs: [CGFloat]) -> CGFloat in
@@ -42,7 +42,7 @@ func normal(mu: CGFloat, sigma: CGFloat) -> Gen<CGFloat> {
   }
 }
 
-@inlinable @inline(__always)
+@inlinable
 func normalPdf(_ x: CGFloat, mu: CGFloat, sigma: CGFloat) -> CGFloat {
   let sigma2 = pow(sigma, 2)
   let numerator = exp(-pow(x - mu, 2) / (2 * sigma2))
@@ -58,7 +58,7 @@ public let sigma = normal(mu: 30, sigma: 30)
 public let modes = zip(.float(in: mx - 50...mx + 50), normal(mu: 24, sigma: 30))
   .array(of: .int(in: 1...4))
 
-@inlinable @inline(__always)
+@inlinable
 func path(from min: CGFloat, to max: CGFloat, by step: CGFloat) -> (CGFloat) -> Gen<CGPath> {
   return { y -> Gen<CGPath> in
     zip(mu, sigma, modes).flatMap { mu, sigma, modes -> Gen<CGPath> in

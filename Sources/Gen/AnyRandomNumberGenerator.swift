@@ -6,12 +6,12 @@ public struct AnyRandomNumberGenerator: RandomNumberGenerator {
   private(set) var rng: RandomNumberGenerator
 
   /// - Parameter rng: A random number generator.
-  @inlinable @inline(__always)
+  @inlinable
   public init(_ rng: RandomNumberGenerator) {
     self.rng = rng
   }
 
-  @inlinable @inline(__always)
+  @inlinable
   public mutating func next() -> UInt64 {
     return self.rng.next()
   }
