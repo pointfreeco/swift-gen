@@ -1,0 +1,27 @@
+name: Gen
+options:
+  bundleIdPrefix: co.pointfree
+  deploymentTarget:
+    iOS: 8.0
+    macOS: 10.9
+    tvOS: 9.0
+    watchOS: 2.0
+  indentWidth: 2
+  tabWidth: 2
+  usesTabs: false
+targets:
+  Gen:
+    platform: [macOS, iOS, tvOS, watchOS]
+    scheme:
+      testTargets: [GenTests_$platform]
+    sources: [Sources]
+    type: framework
+  GenTests:
+    dependencies: [{target: Gen_$platform}]
+    platform: [macOS, iOS, tvOS, watchOS]
+    sources:
+      - path: Tests
+        excludes:
+          - LinuxMain.swift
+          - GenTests/XCTestManifests.swift
+    type: bundle.unit-test
