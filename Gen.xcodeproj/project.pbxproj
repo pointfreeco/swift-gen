@@ -19,6 +19,10 @@
 		806580B121E029E800267867 /* CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580AF21E029E800267867 /* CoreGraphics.swift */; };
 		806580B221E029E800267867 /* CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580AF21E029E800267867 /* CoreGraphics.swift */; };
 		806580B321E029E800267867 /* CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580AF21E029E800267867 /* CoreGraphics.swift */; };
+		80B198C821E11D5900ED0FD8 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B198C721E11D5900ED0FD8 /* Zip.swift */; };
+		80B198C921E11D5900ED0FD8 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B198C721E11D5900ED0FD8 /* Zip.swift */; };
+		80B198CA21E11D5900ED0FD8 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B198C721E11D5900ED0FD8 /* Zip.swift */; };
+		80B198CB21E11D5900ED0FD8 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B198C721E11D5900ED0FD8 /* Zip.swift */; };
 		BF_04FB6AC7C2FF85025003768D85DB49AA /* GenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_9C7660077A596FA5F79F10790DB27C75 /* GenTests.swift */; };
 		BF_0D7DEA249B9A389882AA9B52C0B6E017 /* Gen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FR_F3CD53DB1E0B8E78855124F418BB1559 /* Gen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF_0E353A6D4E611C5D3953ED901190DD99 /* Gen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_F3CD53DB1E0B8E78855124F418BB1559 /* Gen.framework */; };
@@ -123,6 +127,7 @@
 		806580A521E0297800267867 /* AnyRandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRandomNumberGenerator.swift; sourceTree = "<group>"; };
 		806580AA21E0299200267867 /* LCRNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCRNG.swift; sourceTree = "<group>"; };
 		806580AF21E029E800267867 /* CoreGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphics.swift; sourceTree = "<group>"; };
+		80B198C721E11D5900ED0FD8 /* Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zip.swift; sourceTree = "<group>"; };
 		FR_0E52E09107C96078A11DD01916BC4A8D /* Gen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FR_1FF451DDEBC2B654FF1BFFA93DBA3CA9 /* GenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FR_72E4940489DAB6FCF7B8EDBAD70FC94B /* Gen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +196,7 @@
 				806580AF21E029E800267867 /* CoreGraphics.swift */,
 				FR_E682C6C9BF61B64D67D8581C1D2C96EB /* Gen.swift */,
 				806580AA21E0299200267867 /* LCRNG.swift */,
+				80B198C721E11D5900ED0FD8 /* Zip.swift */,
 			);
 			path = Gen;
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 				806580A621E0297800267867 /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_B619452825D828A51A1F394225C4D89D /* Gen.swift in Sources */,
 				806580B021E029E800267867 /* CoreGraphics.swift in Sources */,
+				80B198C921E11D5900ED0FD8 /* Zip.swift in Sources */,
 				806580AB21E0299200267867 /* LCRNG.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +454,7 @@
 				806580A721E0297800267867 /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_6D033848200786878DA87A2F014F27F2 /* Gen.swift in Sources */,
 				806580B121E029E800267867 /* CoreGraphics.swift in Sources */,
+				80B198CA21E11D5900ED0FD8 /* Zip.swift in Sources */,
 				806580AC21E0299200267867 /* LCRNG.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +466,7 @@
 				806580A821E0297800267867 /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_2C15CC87935C8C5E1325D3E4696690BB /* Gen.swift in Sources */,
 				806580B221E029E800267867 /* CoreGraphics.swift in Sources */,
+				80B198C821E11D5900ED0FD8 /* Zip.swift in Sources */,
 				806580AD21E0299200267867 /* LCRNG.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +487,7 @@
 				806580A921E0297800267867 /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_83AFAFAAAA468740DDF83083CBD42F47 /* Gen.swift in Sources */,
 				806580B321E029E800267867 /* CoreGraphics.swift in Sources */,
+				80B198CB21E11D5900ED0FD8 /* Zip.swift in Sources */,
 				806580AE21E0299200267867 /* LCRNG.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

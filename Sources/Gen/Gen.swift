@@ -1,21 +1,21 @@
-public struct Gen<A> {
-  let gen: (inout AnyRandomNumberGenerator) -> A
+public struct Gen<Value> {
+  let gen: (inout AnyRandomNumberGenerator) -> Value
 
-  public func run<G: RandomNumberGenerator>(using rng: inout G) -> A {
+  public func run<G: RandomNumberGenerator>(using rng: inout G) -> Value {
     var arng = AnyRandomNumberGenerator(rng)
     defer { rng = arng.rng as! G }
     return self.gen(&arng)
   }
 
-  public func run() -> A {
+  public func run() -> Value {
     var rng = SystemRandomNumberGenerator()
     return self.run(using: &rng)
   }
 }
 
 extension Gen {
-  public func map<B>(_ f: @escaping (A) -> B) -> Gen<B> {
-    return Gen<B> { rng in f(self.gen(&rng)) }
+  public func map<NewValue>(_ f: @escaping (Value) -> NewValue) -> Gen<NewValue> {
+    return Gen<NewValue> { rng in f(self.gen(&rng)) }
   }
 }
 
@@ -25,69 +25,65 @@ public func zip<A, B>(_ ga: Gen<A>, _ gb: Gen<B>) -> Gen<(A, B)> {
   }
 }
 
-public func zip<A, B, C>(_ ga: Gen<A>, _ gb: Gen<B>, _ gc: Gen<C>) -> Gen<(A, B, C)> {
-  return zip(zip(ga, gb), gc).map { ($0.0, $0.1, $1) }
-}
-
-public func zip<A, B, C, D>(_ ga: Gen<A>, _ gb: Gen<B>, _ gc: Gen<C>, _ gd: Gen<D>) -> Gen<(A, B, C, D)> {
-  return zip(zip(ga, gb), gc, gd).map { ($0.0, $0.1, $1, $2) }
-}
-
-public func zip<A, B, C, D, E>(_ ga: Gen<A>, _ gb: Gen<B>, _ gc: Gen<C>, _ gd: Gen<D>, _ ge: Gen<E>) -> Gen<(A, B, C, D, E)> {
-  return zip(zip(ga, gb), gc, gd, ge).map { ($0.0, $0.1, $1, $2, $3) }
-}
-
 extension Gen {
-  public func flatMap<B>(_ f: @escaping (A) -> Gen<B>) -> Gen<B> {
-    return Gen<B> { rng in
+  public func flatMap<NewValue>(_ f: @escaping (Value) -> Gen<NewValue>) -> Gen<NewValue> {
+    return Gen<NewValue> { rng in
       f(self.run(using: &rng)).run(using: &rng)
     }
   }
 }
 
-extension Gen where A == Int {
+extension Gen where Value == Int {
   public static func int(in range: ClosedRange<Int>) -> Gen {
     return Gen { rng in Int.random(in: range, using: &rng) }
   }
 }
 
-extension Gen where A == Double {
+extension Gen where Value == Double {
   public static func double(in range: ClosedRange<Double>) -> Gen {
     return Gen { rng in Double.random(in: range, using: &rng) }
   }
 }
 
-extension Gen where A == Bool {
+extension Gen where Value == Bool {
   public static let bool = Gen { rng in Bool.random(using: &rng) }
 }
 
-extension Gen where A: Collection {
-  public var element: Gen<A.Element?> {
-    return Gen<A.Element?> { rng in
+extension Gen where Value: Collection {
+  public var element: Gen<Value.Element?> {
+    return Gen<Value.Element?> { rng in
       self.gen(&rng).randomElement(using: &rng)
     }
   }
 }
 
 extension Gen {
-  public static func always(_ a: A) -> Gen {
-    return Gen { _ in a }
+  public static func always(_ value: Value) -> Gen {
+    return Gen { _ in value }
   }
 
-  public func array(of count: Gen<Int>) -> Gen<[A]> {
+  public func array(of count: Gen<Int>) -> Gen<[Value]> {
     return count.flatMap { count in
-      Gen<[A]> { rng in
-        Array(repeating: (), count: count)
-          .map { self.run(using: &rng) }
+      Gen<[Value]> { rng in
+        var array: [Value] = []
+        array.reserveCapacity(count)
+        for _ in 1...count {
+          array.append(self.run(using: &rng))
+        }
+        return array
       }
     }
   }
 }
 
 extension Sequence {
-  public func sequence<A>() -> Gen<[A]> where Element == Gen<A> {
-    return Gen<[A]> { rng in
-      self.map { $0.run(using: &rng) }
+  public func traverse<A, B>(_ transform: @escaping (A) -> B) -> Gen<[B]> where Element == Gen<A> {
+    return Gen<[B]> { rng in
+      self.map { transform($0.run(using: &rng)) }
     }
+  }
+
+  public func sequence<A>() -> Gen<[A]> where Element == Gen<A> {
+    return self.traverse { $0 }
   }
 }
