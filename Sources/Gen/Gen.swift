@@ -36,7 +36,7 @@ extension Gen {
   /// - Returns: A generator of `NewValue`s.
   public func flatMap<NewValue>(_ transform: @escaping (Value) -> Gen<NewValue>) -> Gen<NewValue> {
     return Gen<NewValue> { rng in
-      transform(self.run(using: &rng)).run(using: &rng)
+      transform(self.gen(&rng)).gen(&rng)
     }
   }
 
@@ -47,7 +47,7 @@ extension Gen {
   public func compactMap<NewValue>(_ transform: @escaping (Value) -> NewValue?) -> Gen<NewValue> {
     return Gen<NewValue> { rng in
       while true {
-        if let value = transform(self.run(using: &rng)) {
+        if let value = transform(self.gen(&rng)) {
           return value
         }
       }
@@ -94,7 +94,7 @@ extension Gen {
         var array: [Value] = []
         array.reserveCapacity(count)
         for _ in 1...count {
-          array.append(self.run(using: &rng))
+          array.append(self.gen(&rng))
         }
         return array
       }
@@ -153,6 +153,13 @@ extension Gen where Value: Collection {
   public var element: Gen<Value.Element?> {
     return Gen<Value.Element?> { rng in
       self.gen(&rng).randomElement(using: &rng)
+    }
+  }
+
+  /// Produces a generator of shuffled arrays of this generator's collection.
+  public var shuffled: Gen<[Value.Element]> {
+    return Gen<[Value.Element]> { rng in
+      self.gen(&rng).shuffled(using: &rng)
     }
   }
 }
