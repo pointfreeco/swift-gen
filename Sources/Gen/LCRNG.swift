@@ -1,3 +1,4 @@
+/// A linear congruential random number generator.
 public struct LCRNG: RandomNumberGenerator {
   public var seed: UInt64
 
