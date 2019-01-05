@@ -14,21 +14,21 @@ public struct Gen<Value> {
 }
 
 extension Gen {
-  public func map<NewValue>(_ f: @escaping (Value) -> NewValue) -> Gen<NewValue> {
-    return Gen<NewValue> { rng in f(self.gen(&rng)) }
+  public func map<NewValue>(_ transform: @escaping (Value) -> NewValue) -> Gen<NewValue> {
+    return Gen<NewValue> { rng in transform(self.gen(&rng)) }
   }
 }
 
-public func zip<A, B>(_ ga: Gen<A>, _ gb: Gen<B>) -> Gen<(A, B)> {
+public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
   return Gen<(A, B)> { rng in
-    (ga.gen(&rng), gb.gen(&rng))
+    (a.gen(&rng), b.gen(&rng))
   }
 }
 
 extension Gen {
-  public func flatMap<NewValue>(_ f: @escaping (Value) -> Gen<NewValue>) -> Gen<NewValue> {
+  public func flatMap<NewValue>(_ transform: @escaping (Value) -> Gen<NewValue>) -> Gen<NewValue> {
     return Gen<NewValue> { rng in
-      f(self.run(using: &rng)).run(using: &rng)
+      transform(self.run(using: &rng)).run(using: &rng)
     }
   }
 }
