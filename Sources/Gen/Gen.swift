@@ -123,10 +123,17 @@ extension Gen {
   /// Uses a weighted distribution to randomly select one of the generators in the list.
   @inlinable
   public static func frequency(_ distribution: (Int, Gen)...) -> Gen {
+    return frequency(distribution)
+  }
+
+  /// Uses a weighted distribution to randomly select one of the generators in the list.
+  @inlinable
+  public static func frequency(_ distribution: [(Int, Gen)]) -> Gen {
+    // TODO: Add `!distribution.isEmpty` precondition?
     let generators = distribution.flatMap { Array(repeating: $1, count: $0) }
     return Gen { rng in
-      Gen<Int>.int(in: 0...generators.count)
-        .flatMap { idx in generators[idx] }
+      Gen<Int>.int(in: 0...generators.count - 1)
+        .flatMap { idx in generators[idx - 1] }
         .run(using: &rng)
     }
   }

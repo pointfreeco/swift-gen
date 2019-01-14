@@ -17,13 +17,16 @@
 		BF_20CF67D454F3117412C7C178361853CA /* Gen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_0E52E09107C96078A11DD01916BC4A8D /* Gen.framework */; };
 		BF_267207D279A1DCA076355E150A3A7DF7 /* GenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_9C7660077A596FA5F79F10790DB27C75 /* GenTests.swift */; };
 		BF_28CFAF14264AF8C24C66B79086A86B1A /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_CC5549E0568DFD1DF0AA1CD9942AAF81 /* UIKit.swift */; };
+		BF_293D03087416C9C122A6E6A7F9BF2A3F /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_EC8AFC3F7EE4DDB128B24332740D9023 /* Specializations.swift */; };
 		BF_2C15CC87935C8C5E1325D3E4696690BB /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_E682C6C9BF61B64D67D8581C1D2C96EB /* Gen.swift */; };
 		BF_2E193CFC754597A839D80BC854D20F1C /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_6A00E1F66C6A5560DE7788B1432A4E73 /* AnyRandomNumberGenerator.swift */; };
 		BF_33B54C3A6C5C451787E1B88B42F8C05B /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_F676F60AD6286C77D284B8676C2B4A43 /* Zip.swift */; };
 		BF_3C34E53351B884A25307408A1D29C4E5 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_F676F60AD6286C77D284B8676C2B4A43 /* Zip.swift */; };
 		BF_441170B3BA55979CB150DA8A539F273D /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_E21A7A2FE4C2BBDF06B477DD8EE73624 /* XCTestManifests.swift */; };
 		BF_4791D63586F830679D83BF7C46AFB4B2 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_E21A7A2FE4C2BBDF06B477DD8EE73624 /* XCTestManifests.swift */; };
+		BF_493752FE059AA89AFA2735ED26D366E5 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_EC8AFC3F7EE4DDB128B24332740D9023 /* Specializations.swift */; };
 		BF_55E90874150BB7C8BB226A60844153DC /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_6A00E1F66C6A5560DE7788B1432A4E73 /* AnyRandomNumberGenerator.swift */; };
+		BF_56BC7926EEDD5FC8B9B8AE70F780B2F5 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_EC8AFC3F7EE4DDB128B24332740D9023 /* Specializations.swift */; };
 		BF_5B37BF719F632951FF3DE92C62D2FA31 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_F676F60AD6286C77D284B8676C2B4A43 /* Zip.swift */; };
 		BF_6B684A98DCF23CB5B31E6EB190C0DABE /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_E21A7A2FE4C2BBDF06B477DD8EE73624 /* XCTestManifests.swift */; };
 		BF_6D033848200786878DA87A2F014F27F2 /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_E682C6C9BF61B64D67D8581C1D2C96EB /* Gen.swift */; };
@@ -35,6 +38,7 @@
 		BF_84B59ADDFD50BFCF9F54DCB5847ECC15 /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_6A00E1F66C6A5560DE7788B1432A4E73 /* AnyRandomNumberGenerator.swift */; };
 		BF_9126DC79E2312786643A14C164915F7D /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_6A00E1F66C6A5560DE7788B1432A4E73 /* AnyRandomNumberGenerator.swift */; };
 		BF_9F8B846F5B0D0154BB0D7E11CFC9791C /* Gen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_72E4940489DAB6FCF7B8EDBAD70FC94B /* Gen.framework */; };
+		BF_A5F8EB5126856D9C98C41489C4D71BB6 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_EC8AFC3F7EE4DDB128B24332740D9023 /* Specializations.swift */; };
 		BF_B288A3EA0EE9EE77372338F821FB23A5 /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_8F5323BE1CEECACFB4AAC905034A72D2 /* LCRNG.swift */; };
 		BF_B619452825D828A51A1F394225C4D89D /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_E682C6C9BF61B64D67D8581C1D2C96EB /* Gen.swift */; };
 		BF_CC334FFAC92C011EF9C6A6CCE7478D47 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_CC5549E0568DFD1DF0AA1CD9942AAF81 /* UIKit.swift */; };
@@ -137,6 +141,7 @@
 		FR_D7B747C72ED7A42B6A84FA959AB8D4AE /* Gen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FR_E21A7A2FE4C2BBDF06B477DD8EE73624 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		FR_E682C6C9BF61B64D67D8581C1D2C96EB /* Gen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gen.swift; sourceTree = "<group>"; };
+		FR_EC8AFC3F7EE4DDB128B24332740D9023 /* Specializations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specializations.swift; sourceTree = "<group>"; };
 		FR_F3CD53DB1E0B8E78855124F418BB1559 /* Gen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FR_F676F60AD6286C77D284B8676C2B4A43 /* Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +200,7 @@
 				FR_6A00E1F66C6A5560DE7788B1432A4E73 /* AnyRandomNumberGenerator.swift */,
 				FR_E682C6C9BF61B64D67D8581C1D2C96EB /* Gen.swift */,
 				FR_8F5323BE1CEECACFB4AAC905034A72D2 /* LCRNG.swift */,
+				FR_EC8AFC3F7EE4DDB128B24332740D9023 /* Specializations.swift */,
 				FR_CC5549E0568DFD1DF0AA1CD9942AAF81 /* UIKit.swift */,
 				FR_F676F60AD6286C77D284B8676C2B4A43 /* Zip.swift */,
 			);
@@ -442,6 +448,7 @@
 				BF_55E90874150BB7C8BB226A60844153DC /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_B619452825D828A51A1F394225C4D89D /* Gen.swift in Sources */,
 				BF_022B02EF5E9D9E5357912C4769C00F93 /* LCRNG.swift in Sources */,
+				BF_A5F8EB5126856D9C98C41489C4D71BB6 /* Specializations.swift in Sources */,
 				BF_CC334FFAC92C011EF9C6A6CCE7478D47 /* UIKit.swift in Sources */,
 				BF_33B54C3A6C5C451787E1B88B42F8C05B /* Zip.swift in Sources */,
 			);
@@ -454,6 +461,7 @@
 				BF_2E193CFC754597A839D80BC854D20F1C /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_6D033848200786878DA87A2F014F27F2 /* Gen.swift in Sources */,
 				BF_B288A3EA0EE9EE77372338F821FB23A5 /* LCRNG.swift in Sources */,
+				BF_56BC7926EEDD5FC8B9B8AE70F780B2F5 /* Specializations.swift in Sources */,
 				BF_7BE0DDD3C6A7C37D3E6BD133D1B423D4 /* UIKit.swift in Sources */,
 				BF_7921FE5738EF8B36627312FC6636CAB7 /* Zip.swift in Sources */,
 			);
@@ -466,6 +474,7 @@
 				BF_9126DC79E2312786643A14C164915F7D /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_2C15CC87935C8C5E1325D3E4696690BB /* Gen.swift in Sources */,
 				BF_039B63E101A6C912D847BBEA324950DD /* LCRNG.swift in Sources */,
+				BF_493752FE059AA89AFA2735ED26D366E5 /* Specializations.swift in Sources */,
 				BF_F5EBA9CD86E4B227368EAE0618B71A66 /* UIKit.swift in Sources */,
 				BF_5B37BF719F632951FF3DE92C62D2FA31 /* Zip.swift in Sources */,
 			);
@@ -487,6 +496,7 @@
 				BF_84B59ADDFD50BFCF9F54DCB5847ECC15 /* AnyRandomNumberGenerator.swift in Sources */,
 				BF_83AFAFAAAA468740DDF83083CBD42F47 /* Gen.swift in Sources */,
 				BF_0E9F666AFAE803FDFDD022410FDB12E9 /* LCRNG.swift in Sources */,
+				BF_293D03087416C9C122A6E6A7F9BF2A3F /* Specializations.swift in Sources */,
 				BF_28CFAF14264AF8C24C66B79086A86B1A /* UIKit.swift in Sources */,
 				BF_3C34E53351B884A25307408A1D29C4E5 /* Zip.swift in Sources */,
 			);
