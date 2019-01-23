@@ -9,6 +9,17 @@ public func zip<A, B, C>(
 }
 
 @inlinable
+public func zip<A, B, C, Z>(
+  with f: @escaping (A, B, C) -> Z,
+  _ a: Gen<A>,
+  _ b: Gen<B>,
+  _ c: Gen<C>
+  )
+  -> Gen<Z> {
+    return zip(a, b, c).map(f)
+}
+
+@inlinable
 public func zip<A, B, C, D>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -17,6 +28,18 @@ public func zip<A, B, C, D>(
   )
   -> Gen<(A, B, C, D)> {
     return zip(zip(a, b), c, d).map { ($0.0, $0.1, $1, $2) }
+}
+
+@inlinable
+public func zip<A, B, C, D, Z>(
+  with f: @escaping (A, B, C, D) -> Z,
+  _ a: Gen<A>,
+  _ b: Gen<B>,
+  _ c: Gen<C>,
+  _ d: Gen<D>
+  )
+  -> Gen<Z> {
+    return zip(a, b, c, d).map(f)
 }
 
 @inlinable

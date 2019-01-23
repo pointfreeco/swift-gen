@@ -7,7 +7,7 @@ final class GenTests: XCTestCase {
     measure {
       var rng = LCRNG(seed: 0)
       let i = image.run(using: &rng)
-
+      print("!")
     }
   }
 
