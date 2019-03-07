@@ -50,27 +50,12 @@ let dy = mainArea.height / CGFloat(numLines)
   let curve = bumpCurve(amplitude: amplitude, center: center, innerWidth: innerWidth, bumpWidth: bumpWidth)
 
   return { x in
-    let t = 1 - min(1, max(0, abs(x - center) / center))
-    return Gen<CGFloat>.float(in: 1...3).map { -$0 * t + curve(x) }
+    let y = curve(x)
+    return Gen<CGFloat>.float(in: 0...3).map { $0 * (y / amplitude + 0.5) + y }
   }
 }
 
 func path(from min: CGFloat, to max: CGFloat, baseline: CGFloat) -> Gen<CGPath> {
-  //  return Gen<CGPath> { rng in
-  //    let path = CGMutablePath()
-  //    path.move(to: CGPoint(x: min, y: baseline))
-  //    stride(from: min, to: max, by: dx).forEach { x in
-  //      return path.addLine(
-  //        to: CGPoint(
-  //          x: x,
-  //          y: baseline
-  //        )
-  //      )
-  //    }
-  //    path.addLine(to: CGPoint.init(x: max, y: baseline))
-  //    return path
-  //  }
-
   return Gen<CGPath> { rng in
     let curve = zip(
       with: noiseyBumpCurve(amplitude:center:innerWidth:bumpWidth:),

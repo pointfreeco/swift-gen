@@ -47,14 +47,11 @@ func noiseyBump(
   curveSize: CGFloat
   ) -> (CGFloat) -> Gen<CGFloat> {
 
-  let noise = Gen<CGFloat>.float(in: 1...3)
   let curve = bump(amplitude: amplitude, center: center, plateauSize: plateauSize, curveSize: curveSize)
 
   return { x in
-    return Gen { rng in
-      let y = curve(x)
-      return noise.run(using: &rng) * (y / amplitude + 0.5) + curve(x)
-    }
+    let y = curve(x)
+    return Gen<CGFloat>.float(in: 0...3).map { $0 * (y / amplitude + 0.5) + y }
   }
 }
 
@@ -63,22 +60,57 @@ func path(from min: CGFloat, to max: CGFloat, baseline: CGFloat) -> Gen<CGPath> 
 
     let curve = zip(
       with: noiseyBump(amplitude:center:plateauSize:curveSize:),
-      Gen<CGFloat>.float(in: 1...20).map { -$0 },
+      Gen<CGFloat>.float(in: 1...35).map { -$0 },
       Gen<CGFloat>.float(in: -60...60).map { $0 + canvas.width / 2 },
       Gen<CGFloat>.float(in: 0...60),
       Gen<CGFloat>.float(in: 10...60)
       )
+
+    let curves = curve.array(of: .int(in: 1...4))
       .run(using: &rng)
 
     let path = CGMutablePath()
     path.move(to: CGPoint(x: min, y: baseline))
     stride(from: min, to: max, by: dx).forEach { x in
-      let y = curve(x).run(using: &rng)
+//      let y = curve(x).run(using: &rng)
+      let ys = curves.map { $0(x).run(using: &rng) }
+      let avg = ys.reduce(into: 0, +=) / CGFloat(ys.count)
+      let factor: CGFloat = 1 //ys.map { 1 - $0 / 20 }.reduce(into: 1, *=)
+      let y = avg * factor
       path.addLine(to: CGPoint(x: x, y: baseline + y))
     }
     path.addLine(to: CGPoint.init(x: max, y: baseline))
     return path
   }
+
+//  return Gen<CGPath> { rng in
+//    let curve = zip(
+//      with: noiseyBumpCurve(amplitude:center:innerWidth:bumpWidth:),
+//      Gen<CGFloat>.float(in: 1...12),
+//      Gen<CGFloat>.float(in: (0.3)...(0.7)).map { $0 * (mainArea.maxX - mainArea.minX) },
+//      Gen<CGFloat>.float(in: 0...60),
+//      Gen<CGFloat>.float(in: 10...60)
+//    )
+//
+//    let curves = curve.array(of: .int(in: 1...4))
+//      .run(using: &rng)
+//
+//    let path = CGMutablePath()
+//    path.move(to: CGPoint.init(x: min, y: baseline))
+//    stride(from: min, to: max, by: dx).forEach { x in
+//      let ys = curves.map { $0(x - mainArea.minX).run(using: &rng) }
+//      let avg = ys.reduce(into: 0, +=) / CGFloat(ys.count)
+//      let factor = ys.map { 1 - $0 / 20 }.reduce(into: 1, *=)
+//      return path.addLine(
+//        to: CGPoint(
+//          x: x,
+//          y: baseline + avg * factor
+//        )
+//      )
+//    }
+//    path.addLine(to: CGPoint.init(x: max, y: baseline))
+//    return path
+//  }
 }
 
 let paths = collect(
