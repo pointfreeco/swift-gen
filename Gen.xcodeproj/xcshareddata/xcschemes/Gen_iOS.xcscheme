@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NT_7A469BAD72775AA74C8A923924BDFC82"
+               BlueprintIdentifier = "B7E1270DD88CAC8A5501F71A69AC3552"
                BuildableName = "Gen.framework"
                BlueprintName = "Gen_iOS"
                ReferencedContainer = "container:Gen.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NT_4042F4F9F7D0B28FC5EE2B99A34ACEEC"
+               BlueprintIdentifier = "7316F2D72EAD31F9BBBFFCA3A47E5A21"
                BuildableName = "GenTests.xctest"
                BlueprintName = "GenTests_iOS"
                ReferencedContainer = "container:Gen.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_7A469BAD72775AA74C8A923924BDFC82"
+            BlueprintIdentifier = "B7E1270DD88CAC8A5501F71A69AC3552"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_iOS"
             ReferencedContainer = "container:Gen.xcodeproj">
@@ -66,7 +66,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_7A469BAD72775AA74C8A923924BDFC82"
+            BlueprintIdentifier = "B7E1270DD88CAC8A5501F71A69AC3552"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_iOS"
             ReferencedContainer = "container:Gen.xcodeproj">
@@ -87,7 +87,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_7A469BAD72775AA74C8A923924BDFC82"
+            BlueprintIdentifier = "B7E1270DD88CAC8A5501F71A69AC3552"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_iOS"
             ReferencedContainer = "container:Gen.xcodeproj">

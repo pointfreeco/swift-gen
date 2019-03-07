@@ -140,8 +140,7 @@ extension Gen {
 
   /// Produces a new generator of optional values.
   ///
-  /// - Parameter count: The size of the random array.
-  /// - Returns: A generator of arrays.
+  /// - Returns: A generator of optional values.
   @inlinable
   public var optional: Gen<Value?> {
     return Gen<Value?>.frequency(
@@ -150,12 +149,14 @@ extension Gen {
     )
   }
 
-//  public func asResult<Failure>(withFailure gen: Gen<Failure>) -> Gen<Result<Value, Failure>> {
-//    return Gen<Result<Value, Failure>>.frequency(
-//      (1, gen.map(Result.failure)),
-//      (3, self.map(Result.success)) // TODO: Change to use `size`?
-//    )
-//  }
+  #if swift(>=5)
+  public func asResult<Failure>(withFailure gen: Gen<Failure>) -> Gen<Result<Value, Failure>> {
+    return Gen<Result<Value, Failure>>.frequency(
+      (1, gen.map(Result.failure)),
+      (3, self.map(Result.success)) // TODO: Change to use `size`?
+    )
+  }
+  #endif
 }
 
 extension Gen where Value: FixedWidthInteger {
@@ -206,15 +207,8 @@ extension Gen where Value: Collection {
 extension Gen where Value: CaseIterable {
   /// Produces a generator of all case-iterable cases.
   @inlinable
-  public static var allCases: Gen<Value?> {
-    return allCases(of: Value.self)
-  }
-
-  /// Produces a generator of all case-iterable cases.
-  @inlinable
-  public static func allCases(of type: Value.Type) -> Gen<Value?> {
-    // TODO: Should we unsafely-unwrap the element?
-    return Gen<Value.AllCases>.always(Value.allCases).element
+  public static var allCases: Gen<Value> {
+    return Gen<Value.AllCases>.always(Value.allCases).element.map { $0! }
   }
 }
 

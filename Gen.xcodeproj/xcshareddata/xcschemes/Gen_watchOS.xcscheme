@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NT_2B6EFBD80765F711B58E255EDD7610DC"
+               BlueprintIdentifier = "C818782CB78B0344C81964BA7D8A7E9F"
                BuildableName = "Gen.framework"
                BlueprintName = "Gen_watchOS"
                ReferencedContainer = "container:Gen.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NT_B85D6378B489A5F16B11FD83D242F470"
+               BlueprintIdentifier = "205BE7914BE9F02C6CDAC9E559709DD3"
                BuildableName = "GenTests.xctest"
                BlueprintName = "GenTests_watchOS"
                ReferencedContainer = "container:Gen.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_2B6EFBD80765F711B58E255EDD7610DC"
+            BlueprintIdentifier = "C818782CB78B0344C81964BA7D8A7E9F"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_watchOS"
             ReferencedContainer = "container:Gen.xcodeproj">
@@ -66,7 +66,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_2B6EFBD80765F711B58E255EDD7610DC"
+            BlueprintIdentifier = "C818782CB78B0344C81964BA7D8A7E9F"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_watchOS"
             ReferencedContainer = "container:Gen.xcodeproj">
@@ -87,7 +87,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_2B6EFBD80765F711B58E255EDD7610DC"
+            BlueprintIdentifier = "C818782CB78B0344C81964BA7D8A7E9F"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_watchOS"
             ReferencedContainer = "container:Gen.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NT_26D77D34F7B9964878EB39100437DB24"
+               BlueprintIdentifier = "597E2623E92E76245B7ABECB3E67524C"
                BuildableName = "Gen.framework"
                BlueprintName = "Gen_macOS"
                ReferencedContainer = "container:Gen.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NT_439991D2D328F7E7E333FF08FD62C164"
+               BlueprintIdentifier = "65392604956A825F05CA07179DEC135E"
                BuildableName = "GenTests.xctest"
                BlueprintName = "GenTests_macOS"
                ReferencedContainer = "container:Gen.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_26D77D34F7B9964878EB39100437DB24"
+            BlueprintIdentifier = "597E2623E92E76245B7ABECB3E67524C"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_macOS"
             ReferencedContainer = "container:Gen.xcodeproj">
@@ -66,7 +66,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_26D77D34F7B9964878EB39100437DB24"
+            BlueprintIdentifier = "597E2623E92E76245B7ABECB3E67524C"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_macOS"
             ReferencedContainer = "container:Gen.xcodeproj">
@@ -87,7 +87,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NT_26D77D34F7B9964878EB39100437DB24"
+            BlueprintIdentifier = "597E2623E92E76245B7ABECB3E67524C"
             BuildableName = "Gen.framework"
             BlueprintName = "Gen_macOS"
             ReferencedContainer = "container:Gen.xcodeproj">
