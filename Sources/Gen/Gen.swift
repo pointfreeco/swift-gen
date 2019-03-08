@@ -1,11 +1,11 @@
 /// A composable, transformable context for generating random values.
 public struct Gen<Value> {
   @usableFromInline
-  internal private(set) var gen: (inout AnyRandomNumberGenerator) -> Value
+  internal var _gen: (inout AnyRandomNumberGenerator) -> Value
 
   @inlinable
   public init(run: @escaping (inout AnyRandomNumberGenerator) -> Value) {
-    self.gen = run
+    self._gen = run
   }
 
   /// Returns a random value.
@@ -16,11 +16,11 @@ public struct Gen<Value> {
   public func run<G: RandomNumberGenerator>(using rng: inout G) -> Value {
     if var arng = rng as? AnyRandomNumberGenerator {
       defer { rng = arng as! G }
-      return self.gen(&arng)
+      return self._gen(&arng)
     }
     var arng = AnyRandomNumberGenerator(rng)
-    defer { rng = arng.rng as! G }
-    return self.gen(&arng)
+    defer { rng = arng._rng as! G }
+    return self._gen(&arng)
   }
 
   /// Returns a random value.
@@ -40,7 +40,7 @@ extension Gen {
   /// - Returns: A generator of `NewValue`s.
   @inlinable
   public func map<NewValue>(_ transform: @escaping (Value) -> NewValue) -> Gen<NewValue> {
-    return Gen<NewValue> { rng in transform(self.gen(&rng)) }
+    return Gen<NewValue> { rng in transform(self._gen(&rng)) }
   }
 
   /// Transforms a generator of `Value`s into a generator of `NewValue`s by transforming a value into a generator of `NewValue`s.
@@ -50,7 +50,7 @@ extension Gen {
   @inlinable
   public func flatMap<NewValue>(_ transform: @escaping (Value) -> Gen<NewValue>) -> Gen<NewValue> {
     return Gen<NewValue> { rng in
-      transform(self.gen(&rng)).gen(&rng)
+      transform(self._gen(&rng))._gen(&rng)
     }
   }
 
@@ -62,7 +62,7 @@ extension Gen {
   public func compactMap<NewValue>(_ transform: @escaping (Value) -> NewValue?) -> Gen<NewValue> {
     return Gen<NewValue> { rng in
       while true {
-        if let value = transform(self.gen(&rng)) {
+        if let value = transform(self._gen(&rng)) {
           return value
         }
       }
@@ -88,7 +88,7 @@ extension Gen {
 @inlinable
 public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
   return Gen<(A, B)> { rng in
-    (a.gen(&rng), b.gen(&rng))
+    (a._gen(&rng), b._gen(&rng))
   }
 }
 
@@ -113,7 +113,7 @@ extension Gen {
         var array: [Value] = []
         array.reserveCapacity(count)
         for _ in 1...count {
-          array.append(self.gen(&rng))
+          array.append(self._gen(&rng))
         }
         return array
       }
@@ -150,6 +150,10 @@ extension Gen {
   }
 
   #if swift(>=5)
+  /// Produces a new generator of failable values.
+  ///
+  /// - Returns: A generator of failable values.
+  @inlinable
   public func asResult<Failure>(withFailure gen: Gen<Failure>) -> Gen<Result<Value, Failure>> {
     return Gen<Result<Value, Failure>>.frequency(
       (1, gen.map(Result.failure)),
@@ -191,7 +195,7 @@ extension Gen where Value: Collection {
   @inlinable
   public var element: Gen<Value.Element?> {
     return Gen<Value.Element?> { rng in
-      self.gen(&rng).randomElement(using: &rng)
+      self._gen(&rng).randomElement(using: &rng)
     }
   }
 
@@ -199,7 +203,7 @@ extension Gen where Value: Collection {
   @inlinable
   public var shuffled: Gen<[Value.Element]> {
     return Gen<[Value.Element]> { rng in
-      self.gen(&rng).shuffled(using: &rng)
+      self._gen(&rng).shuffled(using: &rng)
     }
   }
 }

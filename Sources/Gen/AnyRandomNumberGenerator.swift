@@ -3,16 +3,16 @@
 /// The `AnyRandomNumberGenerator` type forwards random number generating operations to an underlying random number generator, hiding its specific underlying type.
 public struct AnyRandomNumberGenerator: RandomNumberGenerator {
   @usableFromInline
-  private(set) var rng: RandomNumberGenerator
+  internal var _rng: RandomNumberGenerator
 
   /// - Parameter rng: A random number generator.
   @inlinable
   public init(_ rng: RandomNumberGenerator) {
-    self.rng = rng
+    self._rng = rng
   }
 
   @inlinable
   public mutating func next() -> UInt64 {
-    return self.rng.next()
+    return self._rng.next()
   }
 }
