@@ -5,6 +5,15 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
+      location = "group:CODE_OF_CONDUCT.md">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:project.yml">
+   </FileRef>
+   <FileRef
       location = "group:Gen.playground">
    </FileRef>
    <FileRef
