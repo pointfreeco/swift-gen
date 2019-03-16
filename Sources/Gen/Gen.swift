@@ -43,6 +43,19 @@ extension Gen {
     return Gen<NewValue> { rng in transform(self._gen(&rng)) }
   }
 
+  /// Combines two generators into a single one.
+  ///
+  /// - Parameters:
+  ///   - a: A generator of `A`s.
+  ///   - b: A generator of `B`s.
+  /// - Returns: A generator of `(A, B)` pairs.
+  @inlinable
+  public static func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> where Value == (A, B) {
+    return Gen<(A, B)> { rng in
+      (a._gen(&rng), b._gen(&rng))
+    }
+  }
+
   /// Transforms a generator of `Value`s into a generator of `NewValue`s by transforming a value into a generator of `NewValue`s.
   ///
   /// - Parameter transform: A function that transforms `Value`s into a generator of `NewValue`s.
@@ -77,22 +90,7 @@ extension Gen {
   public func filter(_ predicate: @escaping (Value) -> Bool) -> Gen<Value> {
     return self.compactMap { predicate($0) ? $0 : nil }
   }
-}
 
-/// Combines two generators into a single one.
-///
-/// - Parameters:
-///   - a: A generator of `A`s.
-///   - b: A generator of `B`s.
-/// - Returns: A generator of `(A, B)` pairs.
-@inlinable
-public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
-  return Gen<(A, B)> { rng in
-    (a._gen(&rng), b._gen(&rng))
-  }
-}
-
-extension Gen {
   /// Produces a generator that always returns the same, constant value.
   ///
   /// - Parameter value: A constant value.
@@ -133,7 +131,7 @@ extension Gen {
     let generators = distribution.flatMap { Array(repeating: $1, count: $0) }
     return Gen { rng in
       Gen<Int>.int(in: 0...generators.count - 1)
-        .flatMap { idx in generators[idx - 1] }
+        .flatMap { idx in generators[idx] }
         .run(using: &rng)
     }
   }
@@ -190,21 +188,35 @@ extension Gen where Value == Bool {
   public static let bool = Gen { rng in Bool.random(using: &rng) }
 }
 
+extension Gen {
+  /// Produces a generator of random elements of this generator's collection.
+  ///
+  /// - Parameter collection: A collection.
+  @inlinable
+  public static func element<C>(of collection: C) -> Gen where C: Collection, Value == C.Element? {
+    return Gen { rng in collection.randomElement(using: &rng) }
+  }
+
+  /// Produces a generator of shuffled arrays of this generator's collection.
+  ///
+  /// - Parameter collection: A collection.
+  @inlinable
+  public static func shuffled<C>(_ collection: C) -> Gen where C: Collection, Value == [C.Element] {
+    return Gen { rng in collection.shuffled(using: &rng) }
+  }
+}
+
 extension Gen where Value: Collection {
   /// Produces a generator of random elements of this generator's collection.
   @inlinable
   public var element: Gen<Value.Element?> {
-    return Gen<Value.Element?> { rng in
-      self._gen(&rng).randomElement(using: &rng)
-    }
+    return self.flatMap(Gen<Value.Element?>.element)
   }
 
   /// Produces a generator of shuffled arrays of this generator's collection.
   @inlinable
   public var shuffled: Gen<[Value.Element]> {
-    return Gen<[Value.Element]> { rng in
-      self._gen(&rng).shuffled(using: &rng)
-    }
+    return self.flatMap(Gen<[Value.Element]>.shuffled)
   }
 }
 
