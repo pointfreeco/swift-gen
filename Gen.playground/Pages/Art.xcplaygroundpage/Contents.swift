@@ -92,9 +92,6 @@ let image = paths.map { paths in
     ctx.setFillColor(UIColor.black.cgColor)
     ctx.fill(canvas)
 
-    ctx.setLineWidth(1.2)
-    ctx.setStrokeColor(UIColor.white.cgColor)
-
     paths.enumerated().forEach { idx, path in
       ctx.setStrokeColor(
         colors[colors.count * idx / paths.count].cgColor

@@ -18,17 +18,14 @@
 		39EA0F21F50C518735B02D7A79F20999 /* Gen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91850896542F5C6F4BA3AE067D62E784 /* Gen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39EB6C7B7293F67CD09027010B7A19A4 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B2969188C1A3226FCA459D9442F6E2 /* UIKit.swift */; };
 		44FE4C11F19A5FF81EE031EB5E723FCE /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503610D39CC8B2191700A682F524A843 /* Gen.swift */; };
-		47D1CF3AF7F391105022B9AC81BE5264 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48BDCE88E1223975C2B469C8C4A76 /* Specializations.swift */; };
 		4E2C3C4A95F39983B739AF17B6DB219C /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B2969188C1A3226FCA459D9442F6E2 /* UIKit.swift */; };
 		541BD95F413C157C3AE040909494D659 /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E124DC2541CB5F2455D41BDB4ECD95 /* LCRNG.swift */; };
-		5BDEB55A3CDA48FC49FBD3CF38AFA2EC /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48BDCE88E1223975C2B469C8C4A76 /* Specializations.swift */; };
 		612C6F56661D59070977638C31E44BA3 /* GenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB3F539FE97C010FCF0F34327C6EA /* GenTests.swift */; };
 		676C85025B462D7EA06A548295238CE1 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B2969188C1A3226FCA459D9442F6E2 /* UIKit.swift */; };
 		6A6466754E6405597165FCD3BAAD11E8 /* GenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB3F539FE97C010FCF0F34327C6EA /* GenTests.swift */; };
 		6CFC7BE1EC9047FD711A782F5F8D0E3C /* Gen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0002F2B809F0030AEC5B7A5849445186 /* Gen.framework */; };
 		7086D9F93F3A99970FF36D32910142B9 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553615FA0FC980E1FD4C7A84BA55B24 /* XCTestManifests.swift */; };
 		74AE2FDB494D77C26AE2177B374556D0 /* GenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB3F539FE97C010FCF0F34327C6EA /* GenTests.swift */; };
-		880E053BD7341B5962102477DE82F9D6 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48BDCE88E1223975C2B469C8C4A76 /* Specializations.swift */; };
 		891B5EF95F204B5007950C6316FA11C3 /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E124DC2541CB5F2455D41BDB4ECD95 /* LCRNG.swift */; };
 		8D2B72060B17D92A991AAEAD37BCD16A /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503610D39CC8B2191700A682F524A843 /* Gen.swift */; };
 		95B043E39D616344B6110125EF57E430 /* Gen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3FD0458BF2510409278742DD313D7 /* Gen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -41,7 +38,6 @@
 		B61F6984890B585322EBA40D4D83DB89 /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E124DC2541CB5F2455D41BDB4ECD95 /* LCRNG.swift */; };
 		BECD3236D80A442FD5A064AD3780C8D8 /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CBDAD599C3CA411B4BEF568E8624 /* AnyRandomNumberGenerator.swift */; };
 		C933942297BAC4187A94FCE218259445 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5427F246911E3A3A8E702AF595082E8 /* Zip.swift */; };
-		D2EC1D6A42AC142AA7A57D070EDB83CC /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48BDCE88E1223975C2B469C8C4A76 /* Specializations.swift */; };
 		D50E31ADDAC12415BA4CAFE2734106A2 /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CBDAD599C3CA411B4BEF568E8624 /* AnyRandomNumberGenerator.swift */; };
 		E5CB239E5C0240961ECAABAA0A671A56 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553615FA0FC980E1FD4C7A84BA55B24 /* XCTestManifests.swift */; };
 		E7B4AF3132E59B45FD69EF50B6031133 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B2969188C1A3226FCA459D9442F6E2 /* UIKit.swift */; };
@@ -215,7 +211,6 @@
 				DD97CBDAD599C3CA411B4BEF568E8624 /* AnyRandomNumberGenerator.swift */,
 				503610D39CC8B2191700A682F524A843 /* Gen.swift */,
 				E8E124DC2541CB5F2455D41BDB4ECD95 /* LCRNG.swift */,
-				13D48BDCE88E1223975C2B469C8C4A76 /* Specializations.swift */,
 				E8B2969188C1A3226FCA459D9442F6E2 /* UIKit.swift */,
 				D5427F246911E3A3A8E702AF595082E8 /* Zip.swift */,
 			);
@@ -421,7 +416,6 @@
 				AA93856D71B8B2813C8183852AF7CE27 /* AnyRandomNumberGenerator.swift in Sources */,
 				A33B948BD0ACB43FCB9B96855019DFBD /* Gen.swift in Sources */,
 				891B5EF95F204B5007950C6316FA11C3 /* LCRNG.swift in Sources */,
-				D2EC1D6A42AC142AA7A57D070EDB83CC /* Specializations.swift in Sources */,
 				39EB6C7B7293F67CD09027010B7A19A4 /* UIKit.swift in Sources */,
 				96EE07811781DD3609E170E78FA0EB80 /* Zip.swift in Sources */,
 			);
@@ -452,7 +446,6 @@
 				D50E31ADDAC12415BA4CAFE2734106A2 /* AnyRandomNumberGenerator.swift in Sources */,
 				8D2B72060B17D92A991AAEAD37BCD16A /* Gen.swift in Sources */,
 				B61F6984890B585322EBA40D4D83DB89 /* LCRNG.swift in Sources */,
-				880E053BD7341B5962102477DE82F9D6 /* Specializations.swift in Sources */,
 				4E2C3C4A95F39983B739AF17B6DB219C /* UIKit.swift in Sources */,
 				EA8703C807C3A29988C9513DE288BAFC /* Zip.swift in Sources */,
 			);
@@ -465,7 +458,6 @@
 				BECD3236D80A442FD5A064AD3780C8D8 /* AnyRandomNumberGenerator.swift in Sources */,
 				006481DA6D63C47E457B55832B88FFBB /* Gen.swift in Sources */,
 				541BD95F413C157C3AE040909494D659 /* LCRNG.swift in Sources */,
-				5BDEB55A3CDA48FC49FBD3CF38AFA2EC /* Specializations.swift in Sources */,
 				E7B4AF3132E59B45FD69EF50B6031133 /* UIKit.swift in Sources */,
 				9797D94D6E5E39EC75797E5A2CE0411F /* Zip.swift in Sources */,
 			);
@@ -496,7 +488,6 @@
 				F48EFC93D9871B79ABA7A691DA93D728 /* AnyRandomNumberGenerator.swift in Sources */,
 				44FE4C11F19A5FF81EE031EB5E723FCE /* Gen.swift in Sources */,
 				1E26132024EAF5C0BFA588B2259E06AC /* LCRNG.swift in Sources */,
-				47D1CF3AF7F391105022B9AC81BE5264 /* Specializations.swift in Sources */,
 				676C85025B462D7EA06A548295238CE1 /* UIKit.swift in Sources */,
 				C933942297BAC4187A94FCE218259445 /* Zip.swift in Sources */,
 			);

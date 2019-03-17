@@ -9,6 +9,42 @@ Composable, transformable, controllable randomness.
 
 ## Table of Contents
 
+- [Motivation](#motivation)
+- [Examples](#examples)
+- [Installation](#installation)
+- [Interested in learning more?](#interested-in-learning-more)
+- [License](#license)
+
+## Motivation
+
+Swift's randomness API is powerful and simple to use, but static and limited. While it goes beyond random numbers and can generate random booleans, shuffle and pluck random elements from collections, it goes no further and provides no means for extensibility. Gen is a lightweight wrapper over Swift's randomness APIs that makes it easy to build custom generators of any kind of value.
+
+## Examples
+
+Gen's namesake type, `Gen`, is responsible for producing random values.
+
+``` swift
+Gen.bool
+// Gen<Bool>
+```
+
+Every random function that comes with Swift is also available as a function on `Gen`.
+
+``` swift
+Int.random(in: 1...10) // 4
+Gen.int(in: 1...10) // Gen<Int>
+```
+
+Rather than immediately produce a random value, `Gen` describes a random value that can be produced by calling its `run` method.
+
+``` swift
+Gen.int(in: 1...10).run() // 2
+```
+
+It's precisely this 
+
+Gen's main building block of randomness is the `Gen` type, which is generic over the random values it can generate. `Gen` values 
+
 ## Installation
 
 ### Carthage
