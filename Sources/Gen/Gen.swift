@@ -372,10 +372,12 @@ extension Gen {
   @inlinable
   public func array(of count: Gen<Int>) -> Gen<[Value]> {
     return count.flatMap { count in
-      Gen<[Value]> { rng in
+      guard count > 0 else { return .always([]) }
+
+      return Gen<[Value]> { rng in
         var array: [Value] = []
         array.reserveCapacity(count)
-        for _ in 1...count {
+        for _ in 0..<count {
           array.append(self._run(&rng))
         }
         return array

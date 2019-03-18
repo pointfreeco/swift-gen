@@ -10,7 +10,7 @@ final class GenTests: XCTestCase {
   }
 
   func testZip() {
-    let (bool, int) = Gen.zip(.bool, .int(in: 1...10)).run(using: &lcrng)
+    let (bool, int) = zip(.bool, .int(in: 1...10)).run(using: &lcrng)
     XCTAssertEqual(true, bool)
     XCTAssertEqual(9, int)
   }
@@ -38,6 +38,11 @@ final class GenTests: XCTestCase {
   func testArrayOf() {
     let gen = Gen.int(in: 1...100).array(of: .int(in: 0...10))
     XCTAssertEqual([39, 24, 45, 86, 59, 100, 65, 50, 43, 36], gen.run(using: &lcrng))
+  }
+
+  func testArrayOf_DegenerateCase() {
+    let gen = Gen.int(in: 1...100).array(of: .int(in: 0...0))
+    XCTAssertEqual([], gen.run(using: &lcrng))
   }
 
   func testFrequency() {
@@ -88,25 +93,25 @@ final class GenTests: XCTestCase {
   }
 
   func testHigherZips() {
-    let zip3 = Gen.zip(.bool, .bool, .bool).run(using: &lcrng)
+    let zip3 = zip(.bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(true, zip3.0)
     XCTAssertEqual(true, zip3.1)
     XCTAssertEqual(true, zip3.2)
 
-    let zip4 = Gen.zip(.bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip4 = zip(.bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(false, zip4.0)
     XCTAssertEqual(false, zip4.1)
     XCTAssertEqual(true, zip4.2)
     XCTAssertEqual(false, zip4.3)
 
-    let zip5 = Gen.zip(.bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip5 = zip(.bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(false, zip5.0)
     XCTAssertEqual(true, zip5.1)
     XCTAssertEqual(false, zip5.2)
     XCTAssertEqual(false, zip5.3)
     XCTAssertEqual(false, zip5.4)
 
-    let zip6 = Gen.zip(.bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip6 = zip(.bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(false, zip6.0)
     XCTAssertEqual(true, zip6.1)
     XCTAssertEqual(false, zip6.2)
@@ -114,7 +119,7 @@ final class GenTests: XCTestCase {
     XCTAssertEqual(false, zip6.4)
     XCTAssertEqual(false, zip6.5)
 
-    let zip7 = Gen.zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip7 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(true, zip7.0)
     XCTAssertEqual(true, zip7.1)
     XCTAssertEqual(true, zip7.2)
@@ -123,7 +128,7 @@ final class GenTests: XCTestCase {
     XCTAssertEqual(true, zip7.5)
     XCTAssertEqual(false, zip7.6)
 
-    let zip8 = Gen.zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip8 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(true, zip8.0)
     XCTAssertEqual(true, zip8.1)
     XCTAssertEqual(false, zip8.2)
@@ -133,7 +138,7 @@ final class GenTests: XCTestCase {
     XCTAssertEqual(true, zip8.6)
     XCTAssertEqual(false, zip8.7)
 
-    let zip9 = Gen.zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip9 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(true, zip9.0)
     XCTAssertEqual(false, zip9.1)
     XCTAssertEqual(false, zip9.2)
@@ -144,7 +149,7 @@ final class GenTests: XCTestCase {
     XCTAssertEqual(true, zip9.7)
     XCTAssertEqual(false, zip9.8)
 
-    let zip10 = Gen.zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip10 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
     XCTAssertEqual(true, zip10.0)
     XCTAssertEqual(false, zip10.1)
     XCTAssertEqual(false, zip10.2)
