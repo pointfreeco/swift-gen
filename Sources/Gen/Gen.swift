@@ -386,7 +386,7 @@ extension Gen {
   /// - Parameter count: The size of the random dictionary.
   /// - Returns: A generator of dictionaries.
   @inlinable
-  public func dictionary<K, V>(of count: Gen<Int>) -> Gen<[K: V]> where Value == (K, V) {
+  public func dictionary<K, V>(ofAtMost count: Gen<Int>) -> Gen<[K: V]> where Value == (K, V) {
     return count.flatMap { count in
       Gen<[K: V]> { rng in
         var dictionary: [K: V] = [:]
@@ -405,13 +405,12 @@ extension Gen {
   /// - Parameter count: The size of the random set.
   /// - Returns: A generator of sets.
   @inlinable
-  public func set<S>(of count: Gen<Int>) -> Gen<S> where S: SetAlgebra, S.Element == Value {
+  public func set<S>(ofAtMost count: Gen<Int>) -> Gen<S> where S: SetAlgebra, S.Element == Value {
     return count.flatMap { count in
       Gen<S> { rng in
-        var set = S(), inserts = 0
-        while inserts < count {
-          let (inserted, _) = set.insert(self._run(&rng))
-          if inserted { inserts += 1 }
+        var set = S()
+        for _ in 1...count {
+          set.insert(self._run(&rng))
         }
         return set
       }
@@ -449,14 +448,12 @@ extension Gen where Value: Hashable {
   /// - Parameter count: The size of the random set.
   /// - Returns: A generator of sets.
   @inlinable
-  public func set(of count: Gen<Int>) -> Gen<Set<Value>> {
+  public func set(ofAtMost count: Gen<Int>) -> Gen<Set<Value>> {
     return count.flatMap { count in
       Gen<Set<Value>> { rng in
         var set: Set<Value> = []
-        var inserts = 0
-        while inserts < count {
-          let (inserted, _) = set.insert(self._run(&rng))
-          if inserted { inserts += 1 }
+        for _ in 1...count {
+          set.insert(self._run(&rng))
         }
         return set
       }
