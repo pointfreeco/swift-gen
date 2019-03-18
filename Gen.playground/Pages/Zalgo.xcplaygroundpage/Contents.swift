@@ -1,5 +1,8 @@
 import Gen
 
+// We want to create a generator that can randomly "Zalgo-ify" any string, which mean sit will glitch it
+// out with random artifacts, as seen here: http://www.eeemo.net
+
 // A Zalgo character is a UTF8 character in the "combining character" range.
 // See: https://en.wikipedia.org/wiki/Combining_character
 let zalgo = Gen.int(in: 0x300 ... 0x36f)

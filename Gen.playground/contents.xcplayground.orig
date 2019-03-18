@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <playground version='6.0' target-platform='ios' executeOnSourceChanges='false'>
+=======
+<playground version='6.0' target-platform='macos' display-mode='raw'>
+>>>>>>> e402879c81d2e88bd4d8167225b7f6e34126baba
     <pages>
         <page name='Sandbox'/>
         <page name='Passwords'/>
         <page name='Art'/>
-        <page name='Zalgo'/>
     </pages>
 </playground>
