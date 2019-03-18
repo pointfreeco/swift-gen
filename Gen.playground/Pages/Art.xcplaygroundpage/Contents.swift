@@ -1,6 +1,8 @@
 import Gen
 import UIKit
 
+// ⚠️ Run this playground with the live view open. ⚠️
+
 let canvas = CGRect(x: 0, y: 0, width: 600, height: 600)
 let mainArea = canvas.insetBy(dx: 130, dy: 100)
 let numLines = 60
@@ -8,21 +10,24 @@ let numPointsPerLine = 60
 let dx = mainArea.width / CGFloat(numPointsPerLine)
 let dy = mainArea.height / CGFloat(numLines)
 
-func f(_ x: CGFloat) -> CGFloat {
-  if x <= 0 { return 0 }
-  return exp(-1 / x)
-}
-
-func g(_ x: CGFloat) -> CGFloat {
-  return f(x) / (f(x) + f(1 - x))
-}
-
 func bump(
   amplitude: CGFloat,
   center: CGFloat,
   plateauSize: CGFloat,
   curveSize: CGFloat
   ) -> (CGFloat) -> CGFloat {
+
+  // A nice smooth curve that starts at zero and trends towards 1 asymptotically
+  func f(_ x: CGFloat) -> CGFloat {
+    if x <= 0 { return 0 }
+    return exp(-1 / x)
+  }
+
+  // A nice smooth curve that starts at zero and curves up to 1 on the unit interval.
+  func g(_ x: CGFloat) -> CGFloat {
+    return f(x) / (f(x) + f(1 - x))
+  }
+
   return { x in
     let plateauSize = plateauSize / 2
     let curveSize = curveSize / 2
@@ -47,13 +52,12 @@ func noisyBump(
   }
 }
 
-let curve = Gen
-  .zip(
-    Gen<CGFloat>.float(in: -30...(-1)),
-    Gen<CGFloat>.float(in: -60...60)
-      .map { $0 + canvas.width / 2 },
-    Gen<CGFloat>.float(in: 0...60),
-    Gen<CGFloat>.float(in: 10...60)
+let curve = zip(
+  Gen<CGFloat>.float(in: -30...(-1)),
+  Gen<CGFloat>.float(in: -60...60)
+    .map { $0 + canvas.width / 2 },
+  Gen<CGFloat>.float(in: 0...60),
+  Gen<CGFloat>.float(in: 10...60)
   )
   .map(noisyBump(amplitude:center:plateauSize:curveSize:))
 
