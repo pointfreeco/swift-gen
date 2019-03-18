@@ -1,7 +1,7 @@
 import Gen
 import UIKit
 
-// We want to create a random art generator that creates UIImage's.
+// We want to create a random art generator that creates UIImages.
 // ⚠️ Run this playground with the live view open. ⚠️
 
 let canvas = CGRect(x: 0, y: 0, width: 600, height: 600)
