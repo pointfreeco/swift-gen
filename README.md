@@ -19,7 +19,7 @@ Composable, transformable, controllable randomness.
 
 Swift's randomness API is powerful and simple to use. It allows us to create random values from many basic types, such as booleans and numeric types, and it allows us to randomly shuffle arrays and pluck random elements from collections.
 
-However, it does not make it easy for us to extend the randomness API, nor does it provide an API that is composable, which would allow us to create complex types fo randomness from simpler pieces.
+However, it does not make it easy for us to extend the randomness API, nor does it provide an API that is composable, which would allow us to create complex types of randomness from simpler pieces.
 
 
 Gen is a lightweight wrapper over Swift's randomness APIs that makes it easy to build custom generators of any kind of value.
@@ -33,18 +33,15 @@ Gen.bool
 // Gen<Bool>
 ```
 
-Rather than immediately produce a random value, `Gen` describes a random value that can be produced by calling its `run` method:
+Rather than immediately producing a random value, `Gen` describes a random value that can be produced by calling its `run` method:
 
 ``` swift
 let myGen = Gen.bool
 // Gen<Bool>
 
-myGen.run() 
-// true
-myGen.run() 
-// true
-myGen.run() 
-// false
+myGen.run() // true
+myGen.run() // true
+myGen.run() // false
 ```
 
 Every random function that comes with Swift is also available as a static function on `Gen`:
@@ -54,13 +51,13 @@ Every random function that comes with Swift is also available as a static functi
 Int.random(in: 0...9) // 4
 
 // Gen's API
-Gen.int(in: 0...9).run() // Gen<Int>
+Gen.int(in: 0...9).run() // 6
 ```
 
-The reason it is powerful to wrap randomness in the `Gen` type and to delay the creation of random values until you invoke `run` is that we can make the `Gen` type composable. For example, A generator of integers can be turned into a generator of numeric strings with a simple application of the `map` function:
+The reason it is powerful to wrap randomness in the `Gen` type is that we can make the `Gen` type composable. For example, a generator of integers can be turned into a generator of numeric strings with a simple application of the `map` function:
 
 ``` swift
-let digit = Gen.int(in: 0...9)             // Gen<Int>
+let digit = Gen.int(in: 0...9)           // Gen<Int>
 let stringDigit = digit.map(String.init) // Gen<String>
 
 stringDigit.run() // "7"
@@ -68,20 +65,27 @@ stringDigit.run() // "1"
 stringDigit.run() // "3"
 ```
 
+Already this is a form of randomness that Swift's API's do not provide out of the box. 
 
+Gen provides many operators for generating new types of randomness, such as `map`, `flatMap` and `zip`, as well as helper functions for generating random arrays, sets, dictionaries, string, distributions and more!
 
-
-
-
-<!-- Rather than immediately produce a random value, `Gen` describes a random value that can be produced by calling its `run` method.
+But composability isn't the only reason the `Gen` type shines. By delaying the creation of random values until the `run` method is invoked, we allow ourselves to control randomness in circumstances where we need determinism, such as tests. The `run` method has an overload that takes a `RandomNumberGenerator` value, which is Swift's protocol that powers their randomness API. By default it uses the `SystemRandomNumberGenerator`, which is a good source of randomness, but we can also provide a seedable "pseudo" random number generator, so that we can get predictable results in tests:
 
 ``` swift
-Gen.int(in: 1...10).run() // 2
+var lcrng = LCRNG(seed: 0)
+Gen.int(in: 0...9).run(using: &lcrng) // "8"
+Gen.int(in: 0...9).run(using: &lcrng) // "1"
+Gen.int(in: 0...9).run(using: &lcrng) // "7"
+
+lcrng.seed = 0
+Gen.int(in: 0...9).run(using: &lcrng) // "8"
+Gen.int(in: 0...9).run(using: &lcrng) // "1"
+Gen.int(in: 0...9).run(using: &lcrng) // "7"
 ```
 
-It's precisely this 
+This means you don't have to sacrifice testability when leveraging randomness in your application.
 
-Gen's main building block of randomness is the `Gen` type, which is generic over the random values it can generate. `Gen` values  -->
+For more examples of using Gen to build complex randomness, see our [blog post](https://www.pointfree.co/blog/posts/19-random-zalgo-generator) on creating a Zalgo generator and our two-part video series ([part 1](https://www.pointfree.co/episodes/ep49-generative-art-part-1) and [part 2](https://www.pointfree.co/episodes/ep50-generative-art-part-2)) on creating generative art.
 
 ## Installation
 
