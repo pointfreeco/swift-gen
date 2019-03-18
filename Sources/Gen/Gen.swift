@@ -354,8 +354,10 @@ extension Gen {
   @inlinable
   public func collection<C>(of count: Gen<Int>) -> Gen<C> where C: RangeReplaceableCollection, C.Element == Value {
     return count.flatMap { count in
-      Gen<C> { rng in
+      guard count > 0 else { return .always(C()) }
+      return Gen<C> { rng in
         var collection = C()
+        guard count > 0 else { return collection }
         collection.reserveCapacity(count)
         for _ in 1...count {
           collection.append(self._run(&rng))
@@ -373,7 +375,6 @@ extension Gen {
   public func array(of count: Gen<Int>) -> Gen<[Value]> {
     return count.flatMap { count in
       guard count > 0 else { return .always([]) }
-
       return Gen<[Value]> { rng in
         var array: [Value] = []
         array.reserveCapacity(count)
@@ -392,7 +393,8 @@ extension Gen {
   @inlinable
   public func dictionary<K, V>(ofAtMost count: Gen<Int>) -> Gen<[K: V]> where Value == (K, V) {
     return count.flatMap { count in
-      Gen<[K: V]> { rng in
+      guard count > 0 else { return .always([:]) }
+      return Gen<[K: V]> { rng in
         var dictionary: [K: V] = [:]
         dictionary.reserveCapacity(count)
         for _ in 1...count {
@@ -411,7 +413,8 @@ extension Gen {
   @inlinable
   public func set<S>(ofAtMost count: Gen<Int>) -> Gen<S> where S: SetAlgebra, S.Element == Value {
     return count.flatMap { count in
-      Gen<S> { rng in
+      guard count > 0 else { return .always(S()) }
+      return Gen<S> { rng in
         var set = S()
         for _ in 1...count {
           set.insert(self._run(&rng))
@@ -454,7 +457,8 @@ extension Gen where Value: Hashable {
   @inlinable
   public func set(ofAtMost count: Gen<Int>) -> Gen<Set<Value>> {
     return count.flatMap { count in
-      Gen<Set<Value>> { rng in
+      guard count > 0 else { return .always([]) }
+      return Gen<Set<Value>> { rng in
         var set: Set<Value> = []
         for _ in 1...count {
           set.insert(self._run(&rng))
@@ -492,7 +496,7 @@ extension Gen where Value == Character {
   }
 
   /// A generator of random numeric digits.
-  public static let digit = Gen.character(in: "0"..."9")
+  public static let number = Gen.character(in: "0"..."9")
 
   /// A generator of uppercase letters.
   public static let uppercaseLetter = Gen.character(in: "A"..."Z")
@@ -506,7 +510,7 @@ extension Gen where Value == Character {
     .map { $0! }
 
   /// A generator of letters and numbers.
-  public static let letterAndNumber = Gen<Value?>
+  public static let letterOrNumber = Gen<Value?>
     .element(of: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
     .map { $0! }
 

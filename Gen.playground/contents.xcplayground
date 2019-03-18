@@ -2,6 +2,7 @@
 <playground version='6.0' target-platform='macos' executeOnSourceChanges='false'>
     <pages>
         <page name='Sandbox'/>
+        <page name='Passwords'/>
         <page name='Art'/>
         <page name='Zalgo'/>
     </pages>
