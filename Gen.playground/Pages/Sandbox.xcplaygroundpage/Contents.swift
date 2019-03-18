@@ -1,6 +1,6 @@
 import Gen
 
-Gen.zip(.bool, .bool).dictionary(ofAtMost: .always(1)).run()
+zip(.bool, .bool).dictionary(ofAtMost: .always(1)).run()
 Gen.bool.set(ofAtMost: .always(3)).run()
 Gen.float(in: 0...1)
 

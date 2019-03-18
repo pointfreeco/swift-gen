@@ -51,20 +51,22 @@ extension Gen {
   public func map<NewValue>(_ transform: @escaping (Value) -> NewValue) -> Gen<NewValue> {
     return Gen<NewValue> { rng in transform(self._run(&rng)) }
   }
+}
 
-  /// Combines two generators into a single one.
-  ///
-  /// - Parameters:
-  ///   - a: A generator of `A`s.
-  ///   - b: A generator of `B`s.
-  /// - Returns: A generator of `(A, B)` pairs.
-  @inlinable
-  public static func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> where Value == (A, B) {
-    return Gen<(A, B)> { rng in
-      (a._run(&rng), b._run(&rng))
-    }
+/// Combines two generators into a single one.
+///
+/// - Parameters:
+///   - a: A generator of `A`s.
+///   - b: A generator of `B`s.
+/// - Returns: A generator of `(A, B)` pairs.
+@inlinable
+public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
+  return Gen<(A, B)> { rng in
+    (a._run(&rng), b._run(&rng))
   }
+}
 
+extension Gen {
   /// Transforms a generator of `Value`s into a generator of `NewValue`s by transforming a value into a generator of `NewValue`s.
   ///
   /// - Parameter transform: A function that transforms `Value`s into a generator of `NewValue`s.
