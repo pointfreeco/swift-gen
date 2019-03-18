@@ -17,25 +17,63 @@ Composable, transformable, controllable randomness.
 
 ## Motivation
 
-Swift's randomness API is powerful and simple to use, but static and limited. While it goes beyond random numbers and can generate random booleans, shuffle and pluck random elements from collections, it goes no further and provides no means for extensibility. Gen is a lightweight wrapper over Swift's randomness APIs that makes it easy to build custom generators of any kind of value.
+Swift's randomness API is powerful and simple to use. It allows us to create random values from many basic types, such as booleans and numeric types, and it allows us to randomly shuffle arrays and pluck random elements from collections.
+
+However, it does not make it easy for us to extend the randomness API, nor does it provide an API that is composable, which would allow us to create complex types fo randomness from simpler pieces.
+
+
+Gen is a lightweight wrapper over Swift's randomness APIs that makes it easy to build custom generators of any kind of value.
 
 ## Examples
 
-Gen's namesake type, `Gen`, is responsible for producing random values.
+Gen's namesake type, `Gen`, is responsible for producing random values. Most often you will reach for one of the static variables inside `Gen` to get access to a `Gen` value:
 
 ``` swift
 Gen.bool
 // Gen<Bool>
 ```
 
-Every random function that comes with Swift is also available as a function on `Gen`.
+Rather than immediately produce a random value, `Gen` describes a random value that can be produced by calling its `run` method:
 
 ``` swift
-Int.random(in: 1...10) // 4
-Gen.int(in: 1...10) // Gen<Int>
+let myGen = Gen.bool
+// Gen<Bool>
+
+myGen.run() 
+// true
+myGen.run() 
+// true
+myGen.run() 
+// false
 ```
 
-Rather than immediately produce a random value, `Gen` describes a random value that can be produced by calling its `run` method.
+Every random function that comes with Swift is also available as a static function on `Gen`:
+
+``` swift
+// Swift's API
+Int.random(in: 0...9) // 4
+
+// Gen's API
+Gen.int(in: 0...9).run() // Gen<Int>
+```
+
+The reason it is powerful to wrap randomness in the `Gen` type and to delay the creation of random values until you invoke `run` is that we can make the `Gen` type composable. For example, A generator of integers can be turned into a generator of numeric strings with a simple application of the `map` function:
+
+``` swift
+let digit = Gen.int(in: 0...9)             // Gen<Int>
+let stringDigit = digit.map(String.init) // Gen<String>
+
+stringDigit.run() // "7"
+stringDigit.run() // "1"
+stringDigit.run() // "3"
+```
+
+
+
+
+
+
+<!-- Rather than immediately produce a random value, `Gen` describes a random value that can be produced by calling its `run` method.
 
 ``` swift
 Gen.int(in: 1...10).run() // 2
@@ -43,7 +81,7 @@ Gen.int(in: 1...10).run() // 2
 
 It's precisely this 
 
-Gen's main building block of randomness is the `Gen` type, which is generic over the random values it can generate. `Gen` values 
+Gen's main building block of randomness is the `Gen` type, which is generic over the random values it can generate. `Gen` values  -->
 
 ## Installation
 

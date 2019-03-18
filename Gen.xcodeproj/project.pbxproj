@@ -126,7 +126,6 @@
 /* Begin PBXFileReference section */
 		0002F2B809F0030AEC5B7A5849445186 /* Gen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BE0D75E20BF5F476D6F2E68EF8DD1A /* GenTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		13D48BDCE88E1223975C2B469C8C4A76 /* Specializations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specializations.swift; sourceTree = "<group>"; };
 		1553615FA0FC980E1FD4C7A84BA55B24 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		503610D39CC8B2191700A682F524A843 /* Gen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gen.swift; sourceTree = "<group>"; };
 		53D3FD0458BF2510409278742DD313D7 /* Gen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
