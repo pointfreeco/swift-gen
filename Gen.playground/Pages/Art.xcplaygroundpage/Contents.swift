@@ -3,8 +3,8 @@ import UIKit
 
 let canvas = CGRect(x: 0, y: 0, width: 600, height: 600)
 let mainArea = canvas.insetBy(dx: 130, dy: 100)
-let numLines = 80
-let numPointsPerLine = 80
+let numLines = 60
+let numPointsPerLine = 60
 let dx = mainArea.width / CGFloat(numPointsPerLine)
 let dy = mainArea.height / CGFloat(numLines)
 
