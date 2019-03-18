@@ -46,13 +46,13 @@ myGen.run() // false
 
 Every random function that comes with Swift is also available as a static function on `Gen`:
 
-``` swift
-// Swift's API
-Int.random(in: 0...9) // 4
-
-// Gen's API
-Gen.int(in: 0...9).run() // 6
-```
+|  Swift's API | Gen's API |
+| --- | --- |
+| `Int.random(in: 0...9)` | `Gen.int(in: 0...9)` |                       
+| `Double.random(in: 0...9)` | `Gen.double(in: 0...9)` |                       
+| `Bool.random()` | `Gen.bool` |                       
+| `[1, 2, 3].randomElement()` | `Gen.element(of: [1, 2, 3])` |                       
+| `[1, 2, 3].shuffled()` | `Gen.shuffle([1, 2, 3])` |                       
 
 The reason it is powerful to wrap randomness in the `Gen` type is that we can make the `Gen` type composable. For example, a generator of integers can be turned into a generator of numeric strings with a simple application of the `map` function:
 
@@ -65,9 +65,9 @@ stringDigit.run() // "1"
 stringDigit.run() // "3"
 ```
 
-Already this is a form of randomness that Swift's API's do not provide out of the box. 
+Already this is a form of randomness that Swift's API's do not provide out of the box.
 
-Gen provides many operators for generating new types of randomness, such as `map`, `flatMap` and `zip`, as well as helper functions for generating random arrays, sets, dictionaries, string, distributions and more!
+Gen provides many operators for generating new types of randomness, such as `map`, `flatMap` and `zip`, as well as helper functions for generating random arrays, sets, dictionaries, strings, distributions and more!
 
 But composability isn't the only reason the `Gen` type shines. By delaying the creation of random values until the `run` method is invoked, we allow ourselves to control randomness in circumstances where we need determinism, such as tests. The `run` method has an overload that takes a `RandomNumberGenerator` value, which is Swift's protocol that powers their randomness API. By default it uses the `SystemRandomNumberGenerator`, which is a good source of randomness, but we can also provide a seedable "pseudo" random number generator, so that we can get predictable results in tests:
 
@@ -111,7 +111,7 @@ If you want to use Gen in a project that uses [SwiftPM](https://swift.org/packag
 
 ``` swift
 dependencies: [
-.package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.1.0")
+  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.1.0")
 ]
 ```
 
