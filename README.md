@@ -67,7 +67,22 @@ stringDigit.run() // "3"
 
 Already this is a form of randomness that Swift's API's do not provide out of the box.
 
-Gen provides many operators for generating new types of randomness, such as `map`, `flatMap` and `zip`, as well as helper functions for generating random arrays, sets, dictionaries, strings, distributions and more!
+Gen provides many operators for generating new types of randomness, such as `map`, `flatMap` and `zip`, as well as helper functions for generating random arrays, sets, dictionaries, strings, distributions and more! A random password generator, for example, is just a few operators away.
+
+``` swift
+// Take a generator of random letters and numbers.
+let password = Gen.letterOrNumber
+  // Generate 6-character strings of them.
+  .string(of: .always(6))
+  // Generate 3 segments of these strings.
+  .array(of: .always(3))
+  // And join them.
+  .map { $0.joined(separator: "-") }
+
+password.run() // "9BiGYA-fmvsOf-VYDtDv"
+password.run() // "dS2MGr-FQSuC4-ZLEicl"
+password.run() // "YusZGF-HILrCo-rNGfCA"
+```
 
 But composability isn't the only reason the `Gen` type shines. By delaying the creation of random values until the `run` method is invoked, we allow ourselves to control randomness in circumstances where we need determinism, such as tests. The `run` method has an overload that takes a `RandomNumberGenerator` value, which is Swift's protocol that powers their randomness API. By default it uses the `SystemRandomNumberGenerator`, which is a good source of randomness, but we can also provide a seedable "pseudo" random number generator, so that we can get predictable results in tests:
 
