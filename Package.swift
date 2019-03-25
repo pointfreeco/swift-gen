@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.0
 
 import PackageDescription
 
@@ -8,7 +8,7 @@ let package = Package(
     .library(name: "Gen", targets: ["Gen"])
   ],
   dependencies: [
-    .package(url: "https://github.com/yonaskolb/XcodeGen.git", from: "2.2.0"),
+    .package(url: "https://github.com/yonaskolb/XcodeGen.git", from: "2.3.0"),
   ],
   targets: [
     .target(name: "Gen", dependencies: []),

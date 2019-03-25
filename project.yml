@@ -13,12 +13,16 @@ targets:
   Gen:
     platform: [macOS, iOS, tvOS, watchOS]
     scheme:
-      testTargets: [GenTests_$platform]
+      testTargets: ['GenTests_${platform}']
+    settings:
+      SWIFT_VERSION: 5.0
     sources: [Sources]
     type: framework
   GenTests:
-    dependencies: [{target: Gen_$platform}]
+    dependencies: [{target: 'Gen_${platform}'}]
     platform: [macOS, iOS, tvOS, watchOS]
+    settings:
+      SWIFT_VERSION: 5.0
     sources:
       - path: Tests
         excludes:

@@ -524,6 +524,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -543,6 +544,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -617,6 +619,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -631,6 +634,7 @@
 				PRODUCT_NAME = GenTests;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Debug;
@@ -644,6 +648,7 @@
 				PRODUCT_NAME = GenTests;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Release;
@@ -663,6 +668,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -676,6 +682,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.pointfree.GenTests-tvOS";
 				PRODUCT_NAME = GenTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -688,6 +695,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.pointfree.GenTests-iOS";
 				PRODUCT_NAME = GenTests;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -768,6 +776,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -789,6 +798,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -801,6 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.pointfree.GenTests-iOS";
 				PRODUCT_NAME = GenTests;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -814,6 +825,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.pointfree.GenTests-macOS";
 				PRODUCT_NAME = GenTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -826,6 +838,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.pointfree.GenTests-macOS";
 				PRODUCT_NAME = GenTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -844,6 +857,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -857,6 +871,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.pointfree.GenTests-tvOS";
 				PRODUCT_NAME = GenTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
@@ -875,6 +890,7 @@
 				PRODUCT_NAME = Gen;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
