@@ -57,12 +57,10 @@ final class GenTests: XCTestCase {
   }
 
   func testResult() {
-    #if swift(>=5.0)
     struct Failure: Error, Equatable {}
     let gen = Gen.bool.asResult(withFailure: .always(Failure())).array(of: .always(10))
     lcrng.seed = 777
     XCTAssertEqual([.success(true), .failure(.init()), .success(true), .success(true), .success(true), .success(true), .success(false), .success(false), .success(true), .success(false)], gen.run(using: &lcrng))
-    #endif
   }
 
   func testElementOf() {
