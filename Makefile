@@ -2,7 +2,7 @@ imports = \
 	@testable import GenTests;
 
 xcodeproj:
-	swift run xcodegen
+	PF_DEVELOP=1 swift run xcodegen
 
 linux-main:
 	swift test --generate-linuxmain
