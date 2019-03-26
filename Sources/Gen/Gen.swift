@@ -437,7 +437,6 @@ extension Gen {
     )
   }
 
-  #if swift(>=5)
   /// Produces a new generator of failable values.
   ///
   /// - Returns: A generator of failable values.
@@ -448,7 +447,6 @@ extension Gen {
       (3, self.map(Result.success)) // TODO: Change to use `size` with resizable generators?
     )
   }
-  #endif
 }
 
 extension Gen where Value: Hashable {
