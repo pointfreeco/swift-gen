@@ -119,7 +119,7 @@ For more examples of using Gen to build complex randomness, see our [blog post](
 If you use [Carthage](https://github.com/Carthage/Carthage), you can add the following dependency to your `Cartfile`:
 
 ``` ruby
-github "pointfreeco/swift-gen" ~> 0.1
+github "pointfreeco/swift-gen" ~> 0.2
 ```
 
 ### CocoaPods
@@ -127,7 +127,7 @@ github "pointfreeco/swift-gen" ~> 0.1
 If your project uses [CocoaPods](https://cocoapods.org), just add the following to your `Podfile`:
 
 ``` ruby
-pod 'PointFree-Gen', '~> 0.1'
+pod 'PointFree-Gen', '~> 0.2'
 ```
 
 ### SwiftPM
@@ -136,7 +136,7 @@ If you want to use Gen in a project that uses [SwiftPM](https://swift.org/packag
 
 ``` swift
 dependencies: [
-  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.1.0")
+  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.2.0")
 ]
 ```
 
