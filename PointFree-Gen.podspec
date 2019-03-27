@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = "PointFree-Gen"
   s.module_name = "Gen"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
   s.summary = "Composable, transformable, controllable randomness."
 
   s.description = <<-DESC
