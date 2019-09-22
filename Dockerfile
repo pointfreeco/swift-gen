@@ -1,4 +1,4 @@
-FROM norionomura/swift:swift-5.0-branch
+FROM finestructure/swift:swift-5.1-RELEASE
 
 WORKDIR /package
 
