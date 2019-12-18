@@ -1,13 +1,10 @@
-imports = \
-	@testable import GenTests;
-
 xcodeproj:
 	PF_DEVELOP=1 swift run xcodegen
 
 linux-main:
 	swift test --generate-linuxmain
 
-test-linux: linux-main
+test-linux:
 	docker build --tag gen-testing . \
 		&& docker run --rm gen-testing
 
@@ -27,7 +24,7 @@ test-ios:
 		| xcpretty
 
 test-swift:
-	swift test
+	swift test -v
 
 test-playgrounds: test-macos
 	find . \
