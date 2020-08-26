@@ -3,7 +3,7 @@ import Foundation
 import PackageDescription
 
 let package = Package(
-  name: "Gen",
+  name: "swift-gen",
   products: [
     .library(name: "Gen", targets: ["Gen"])
   ],
