@@ -7,7 +7,7 @@ test-linux:
 		-v "$(PWD):$(PWD)" \
 		-w "$(PWD)" \
 		swift:5.2.3 \
-		bash -c 'swift test --parallel --enable-test-discovery -v'
+		bash -c 'make test-swift'
 
 build-release-linux:
 	docker run \
@@ -15,7 +15,7 @@ build-release-linux:
 		-v "$(PWD):$(PWD)" \
 		-w "$(PWD)" \
 		swift:5.2.3 \
-		bash -c 'swift build --enable-test-discovery -c release'
+		bash -c 'make build-release-swift'
 
 test-macos:
 	set -o pipefail && \
@@ -33,7 +33,10 @@ test-ios:
 		| xcpretty
 
 test-swift:
-	swift test -v
+	swift test --parallel --enable-test-discovery -v
+
+build-release-swift:
+	swift build --enable-test-discovery -c release
 
 test-playgrounds: test-macos
 	find . \
