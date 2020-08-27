@@ -492,13 +492,13 @@ extension Gen where Value == Character {
   public static let lowercaseLetter = Gen.character(in: "a"..."z")
 
   /// A generator of uppercase and lowercase letters.
-  public static let letter = Gen<Value?>
-    .element(of: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+  public static let letter = Gen<Character?>
+    .element(of: Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") as [Character])
     .map { $0! }
 
   /// A generator of letters and numbers.
-  public static let letterOrNumber = Gen<Value?>
-    .element(of: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+  public static let letterOrNumber = Gen<Character?>
+    .element(of: Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") as [Character])
     .map { $0! }
 
   /// A generator of ASCII characters.

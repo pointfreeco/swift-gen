@@ -7,7 +7,15 @@ test-linux:
 		-v "$(PWD):$(PWD)" \
 		-w "$(PWD)" \
 		swift:5.2.3 \
-		bash -c 'swift test --parallel --enable-pubgrub-resolver --enable-test-discovery -v'
+		bash -c 'swift test --parallel --enable-test-discovery -v'
+
+build-release-linux:
+	docker run \
+		--rm \
+		-v "$(PWD):$(PWD)" \
+		-w "$(PWD)" \
+		swift:5.2.3 \
+		bash -c 'swift build --enable-test-discovery -c release'
 
 test-macos:
 	set -o pipefail && \

@@ -24,3 +24,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run tests
       run: make test-linux
+    - name: Build for release
+      run: make build-release-linux
