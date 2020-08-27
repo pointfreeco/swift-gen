@@ -1,12 +1,13 @@
 xcodeproj:
 	PF_DEVELOP=1 swift run xcodegen
 
-linux-main:
-	swift test --generate-linuxmain
-
 test-linux:
-	docker build --tag gen-testing . \
-		&& docker run --rm gen-testing
+	docker run \
+		--rm \
+		-v "$(PWD):$(PWD)" \
+		-w "$(PWD)" \
+		swift:5.2.3 \
+		bash -c 'swift test --parallel --enable-pubgrub-resolver --enable-test-discovery -v'
 
 test-macos:
 	set -o pipefail && \

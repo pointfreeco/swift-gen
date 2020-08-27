@@ -56,8 +56,8 @@ final class GenTests: XCTestCase {
     XCTAssertEqual([nil, false, nil, true, false, true, false, true, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
   }
 
+  struct Failure: Error, Equatable {}
   func testResult() {
-    struct Failure: Error, Equatable {}
     let gen = Gen.bool.asResult(withFailure: .always(Failure())).array(of: .always(10))
     lcrng.seed = 1
     XCTAssertEqual(
