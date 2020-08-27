@@ -12,7 +12,7 @@ final class GenTests: XCTestCase {
   func testZip() {
     let (bool, int) = zip(.bool, .int(in: 1...10)).run(using: &lcrng)
     XCTAssertEqual(true, bool)
-    XCTAssertEqual(9, int)
+    XCTAssertEqual(4, int)
   }
 
   func testFlatMap() {
@@ -36,8 +36,8 @@ final class GenTests: XCTestCase {
   }
 
   func testArrayOf() {
-    let gen = Gen.int(in: 1...100).array(of: .int(in: 0...10))
-    XCTAssertEqual([39, 24, 45, 86, 59, 100, 65, 50, 43, 36], gen.run(using: &lcrng))
+    let gen = Gen.int(in: 1...100).array(of: .int(in: 2...10))
+    XCTAssertEqual([39, 86], gen.run(using: &lcrng))
   }
 
   func testArrayOf_DegenerateCase() {
@@ -47,47 +47,61 @@ final class GenTests: XCTestCase {
 
   func testFrequency() {
     let gen = Gen.frequency((1, .always(1)), (4, .always(nil)))
-    XCTAssertEqual([nil, nil, nil, nil, 1, nil, nil, nil, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
+    XCTAssertEqual([1, nil, nil, nil, nil, nil, nil, 1, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
   }
 
   func testOptional() {
     let gen = Gen.bool.optional
-    lcrng.seed = 777
-    XCTAssertEqual([true, nil, true, true, true, true, false, false, true, false], gen.array(of: .always(10)).run(using: &lcrng))
+    lcrng.seed = 1
+    XCTAssertEqual([nil, false, nil, true, false, true, false, true, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
   }
 
   func testResult() {
     struct Failure: Error, Equatable {}
     let gen = Gen.bool.asResult(withFailure: .always(Failure())).array(of: .always(10))
-    lcrng.seed = 777
-    XCTAssertEqual([.success(true), .failure(.init()), .success(true), .success(true), .success(true), .success(true), .success(false), .success(false), .success(true), .success(false)], gen.run(using: &lcrng))
+    lcrng.seed = 1
+    XCTAssertEqual(
+      [
+        .failure(.init()),
+        .success(false),
+        .failure(.init()),
+        .success(true),
+        .success(false),
+        .success(true),
+        .success(false),
+        .success(true),
+        .failure(.init()),
+        .failure(.init()),
+      ],
+      gen.run(using: &lcrng)
+    )
   }
 
   func testElementOf() {
-    XCTAssertEqual("goodbye", Gen.element(of: ["hello", "goodbye"]).run(using: &lcrng))
+    XCTAssertEqual("hello", Gen.element(of: ["hello", "goodbye"]).run(using: &lcrng))
     XCTAssertEqual("hello", Gen.always(["hello", "goodbye"]).element.run(using: &lcrng))
   }
 
   func testShuffled() {
     let suit = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-    XCTAssertEqual(["8", "4", "9", "A", "Q", "2", "7", "6", "K", "5", "10", "J", "3"], Gen.shuffled(suit).run(using: &lcrng))
-    XCTAssertEqual(["7", "4", "K", "Q", "8", "2", "5", "A", "3", "6", "10", "J", "9"], Gen.always(suit).shuffled.run(using: &lcrng))
+    XCTAssertEqual(["A", "6", "Q", "8", "7", "4", "9", "2", "3", "5", "K", "10", "J"], Gen.shuffled(suit).run(using: &lcrng))
+    XCTAssertEqual(["3", "A", "6", "2", "8", "4", "5", "K", "10", "J", "7", "Q", "9"], Gen.always(suit).shuffled.run(using: &lcrng))
   }
 
   func testAllCases() {
     enum Traffic: CaseIterable, Equatable { case green, yellow, red }
     let gen = Gen<Traffic>.allCases
-    XCTAssertEqual(.red, gen.run(using: &lcrng))
+    XCTAssertEqual(.green, gen.run(using: &lcrng))
   }
 
   func testTraverse() {
     let gen = [Gen.int(in: 1...100), Gen.int(in: 1_000...1_000_000)].traverse(String.init)
-    XCTAssertEqual(["94", "348083"], gen.run(using: &lcrng))
+    XCTAssertEqual(["1", "387181"], gen.run(using: &lcrng))
   }
 
   func testSequence() {
     let gen = [Gen.int(in: 1...100), Gen.int(in: 1_000...1_000_000)].sequence()
-    XCTAssertEqual([94, 348083], gen.run(using: &lcrng))
+    XCTAssertEqual([1, 387181], gen.run(using: &lcrng))
   }
 
   func testHigherZips() {
