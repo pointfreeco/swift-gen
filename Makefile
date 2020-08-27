@@ -33,4 +33,8 @@ test-playgrounds: test-macos
 		-name '*.swift' \
 		-exec swift -F .derivedData/Build/Products/Debug/ -suppress-warnings {} +
 
+format:
+	swift format --in-place --recursive \
+		./Package.swift ./Sources ./Tests
+
 test-all: test-linux test-macos test-ios test-playgrounds
