@@ -276,18 +276,18 @@ extension Gen where Value == Float {
 }
 
 #if canImport(CoreGraphics)
-import CoreGraphics
+  import CoreGraphics
 
-extension Gen where Value == CGFloat {
-  /// Returns a generator of random values within the specified range.
-  ///
-  /// - Parameter range: The range in which to create a random value. `range` must be finite.
-  /// - Returns: A generator of random values within the bounds of range.
-  @inlinable
-  public static func cgFloat(in range: ClosedRange<Value>) -> Gen {
-    return Gen { rng in .random(in: range, using: &rng) }
+  extension Gen where Value == CGFloat {
+    /// Returns a generator of random values within the specified range.
+    ///
+    /// - Parameter range: The range in which to create a random value. `range` must be finite.
+    /// - Returns: A generator of random values within the bounds of range.
+    @inlinable
+    public static func cgFloat(in range: ClosedRange<Value>) -> Gen {
+      return Gen { rng in .random(in: range, using: &rng) }
+    }
   }
-}
 #endif
 
 extension Gen where Value == Bool {
@@ -341,7 +341,8 @@ extension Gen {
   /// - Parameter count: The size of the random collection.
   /// - Returns: A generator of collections.
   @inlinable
-  public func collection<C>(of count: Gen<Int>) -> Gen<C> where C: RangeReplaceableCollection, C.Element == Value {
+  public func collection<C>(of count: Gen<Int>) -> Gen<C>
+  where C: RangeReplaceableCollection, C.Element == Value {
     return count.flatMap { count in
       guard count > 0 else { return .always(C()) }
       return Gen<C> { rng in
@@ -420,7 +421,7 @@ extension Gen {
   public var optional: Gen<Value?> {
     return Gen<Value?>.frequency(
       (1, Gen<Value?>.always(Value?.none)),
-      (3, self.map(Value?.some)) // TODO: Change to use `size` with resizable generators?
+      (3, self.map(Value?.some))  // TODO: Change to use `size` with resizable generators?
     )
   }
 
@@ -431,7 +432,7 @@ extension Gen {
   public func asResult<Failure>(withFailure gen: Gen<Failure>) -> Gen<Result<Value, Failure>> {
     return Gen<Result<Value, Failure>>.frequency(
       (1, gen.map(Result.failure)),
-      (3, self.map(Result.success)) // TODO: Change to use `size` with resizable generators?
+      (3, self.map(Result.success))  // TODO: Change to use `size` with resizable generators?
     )
   }
 }
@@ -478,7 +479,9 @@ extension Gen where Value == Character {
   @inlinable
   public static func character(in range: ClosedRange<Value>) -> Gen {
     return Gen<UnicodeScalar>
-      .unicodeScalar(in: range.lowerBound.unicodeScalars.first!...range.upperBound.unicodeScalars.last!)
+      .unicodeScalar(
+        in: range.lowerBound.unicodeScalars.first!...range.upperBound.unicodeScalars.last!
+      )
       .map(Character.init)
   }
 
@@ -498,7 +501,9 @@ extension Gen where Value == Character {
 
   /// A generator of letters and numbers.
   public static let letterOrNumber = Gen<Character?>
-    .element(of: Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") as [Character])
+    .element(
+      of: Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") as [Character]
+    )
     .map { $0! }
 
   /// A generator of ASCII characters.

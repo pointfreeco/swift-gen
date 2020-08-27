@@ -1,5 +1,5 @@
-import XCTest
 import Gen
+import XCTest
 
 final class GenTests: XCTestCase {
   var lcrng = LCRNG(seed: 0)
@@ -47,13 +47,16 @@ final class GenTests: XCTestCase {
 
   func testFrequency() {
     let gen = Gen.frequency((1, .always(1)), (4, .always(nil)))
-    XCTAssertEqual([1, nil, nil, nil, nil, nil, nil, 1, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
+    XCTAssertEqual(
+      [1, nil, nil, nil, nil, nil, nil, 1, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
   }
 
   func testOptional() {
     let gen = Gen.bool.optional
     lcrng.seed = 1
-    XCTAssertEqual([nil, false, nil, true, false, true, false, true, nil, nil], gen.array(of: .always(10)).run(using: &lcrng))
+    XCTAssertEqual(
+      [nil, false, nil, true, false, true, false, true, nil, nil],
+      gen.array(of: .always(10)).run(using: &lcrng))
   }
 
   struct Failure: Error, Equatable {}
@@ -84,8 +87,12 @@ final class GenTests: XCTestCase {
 
   func testShuffled() {
     let suit = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-    XCTAssertEqual(["A", "6", "Q", "8", "7", "4", "9", "2", "3", "5", "K", "10", "J"], Gen.shuffled(suit).run(using: &lcrng))
-    XCTAssertEqual(["3", "A", "6", "2", "8", "4", "5", "K", "10", "J", "7", "Q", "9"], Gen.always(suit).shuffled.run(using: &lcrng))
+    XCTAssertEqual(
+      ["A", "6", "Q", "8", "7", "4", "9", "2", "3", "5", "K", "10", "J"],
+      Gen.shuffled(suit).run(using: &lcrng))
+    XCTAssertEqual(
+      ["3", "A", "6", "2", "8", "4", "5", "K", "10", "J", "7", "Q", "9"],
+      Gen.always(suit).shuffled.run(using: &lcrng))
   }
 
   func testAllCases() {
@@ -161,7 +168,8 @@ final class GenTests: XCTestCase {
     XCTAssertEqual(true, zip9.7)
     XCTAssertEqual(false, zip9.8)
 
-    let zip10 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &lcrng)
+    let zip10 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(
+      using: &lcrng)
     XCTAssertEqual(true, zip10.0)
     XCTAssertEqual(false, zip10.1)
     XCTAssertEqual(false, zip10.2)
