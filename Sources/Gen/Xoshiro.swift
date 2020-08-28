@@ -5,7 +5,7 @@ public struct Xoshiro: RandomNumberGenerator {
 
   @inlinable
   public init() {
-    state = zip(
+    self.state = zip(
       .int(in: .min ... .max),
       .int(in: .min ... .max),
       .int(in: .min ... .max),
@@ -22,15 +22,15 @@ public struct Xoshiro: RandomNumberGenerator {
 
   @inlinable
   public mutating func next() -> UInt64 {
-    let x = state.1 &* 5
+    let x = self.state.1 &* 5
     let result = ((x &<< 7) | (x &>> 57)) &* 9
-    let t = state.1 &<< 17
-    state.2 ^= state.0
-    state.3 ^= state.1
-    state.1 ^= state.2
-    state.0 ^= state.3
-    state.2 ^= t
-    state.3 = (state.3 &<< 45) | (state.3 &>> 19)
+    let t = self.state.1 &<< 17
+    self.state.2 ^= self.state.0
+    self.state.3 ^= self.state.1
+    self.state.1 ^= self.state.2
+    self.state.0 ^= self.state.3
+    self.state.2 ^= t
+    self.state.3 = (self.state.3 &<< 45) | (self.state.3 &>> 19)
     return result
   }
 }
