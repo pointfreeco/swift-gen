@@ -17,7 +17,7 @@ public struct Xoshiro: RandomNumberGenerator {
   @inlinable
   public init(seed: UInt64) {
     self.state = (seed, 18_446_744, 073_709, 551_615)
-    for _ in 1...10 { _ = self.next() } // perturb
+    for _ in 1...10 { _ = self.next() }  // perturb
   }
 
   @inlinable

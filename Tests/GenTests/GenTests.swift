@@ -48,7 +48,8 @@ final class GenTests: XCTestCase {
   func testFrequency() {
     let gen = Gen.frequency((1, .always(1)), (4, .always(nil)))
     XCTAssertEqual(
-      [1, 1, nil, nil, nil, nil, nil, nil, nil, nil], gen.array(of: .always(10)).run(using: &xoshiro))
+      [1, 1, nil, nil, nil, nil, nil, nil, nil, nil],
+      gen.array(of: .always(10)).run(using: &xoshiro))
   }
 
   func testOptional() {
@@ -155,7 +156,8 @@ final class GenTests: XCTestCase {
     XCTAssertEqual(false, zip8.6)
     XCTAssertEqual(true, zip8.7)
 
-    let zip9 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(using: &xoshiro)
+    let zip9 = zip(.bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool, .bool).run(
+      using: &xoshiro)
     XCTAssertEqual(true, zip9.0)
     XCTAssertEqual(false, zip9.1)
     XCTAssertEqual(false, zip9.2)
