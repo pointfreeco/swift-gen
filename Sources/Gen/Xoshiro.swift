@@ -1,7 +1,9 @@
 /// An implementation of xoshiro256**: http://xoshiro.di.unimi.it.
 public struct Xoshiro: RandomNumberGenerator {
-  private var state: (UInt64, UInt64, UInt64, UInt64)
+  @usableFromInline
+  var state: (UInt64, UInt64, UInt64, UInt64)
 
+  @inlinable
   public init() {
     state = zip(
       .int(in: .min ... .max),
@@ -12,11 +14,13 @@ public struct Xoshiro: RandomNumberGenerator {
     .run()
   }
 
+  @inlinable
   public init(seed: UInt64) {
     self.state = (seed, 18_446_744, 073_709, 551_615)
     for _ in 1...10 { _ = self.next() } // perturb
   }
 
+  @inlinable
   public mutating func next() -> UInt64 {
     let x = state.1 &* 5
     let result = ((x &<< 7) | (x &>> 57)) &* 9
