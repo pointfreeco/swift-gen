@@ -22,6 +22,7 @@ public struct Xoshiro: RandomNumberGenerator {
 
   @inlinable
   public mutating func next() -> UInt64 {
+    // Adopted from https://github.com/mattgallagher/CwlUtils/blob/0bfc4587d01cfc796b6c7e118fc631333dd8ab33/Sources/CwlUtils/CwlRandom.swift
     let x = self.state.1 &* 5
     let result = ((x &<< 7) | (x &>> 57)) &* 9
     let t = self.state.1 &<< 17
