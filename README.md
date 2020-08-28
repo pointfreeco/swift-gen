@@ -96,15 +96,15 @@ let randomPoint = zip(.int(in: -10...10), .int(in: -10...10))
 But composability isn't the only reason the `Gen` type shines. By delaying the creation of random values until the `run` method is invoked, we allow ourselves to control randomness in circumstances where we need determinism, such as tests. The `run` method has an overload that takes a `RandomNumberGenerator` value, which is Swift's protocol that powers their randomness API. By default it uses the `SystemRandomNumberGenerator`, which is a good source of randomness, but we can also provide a seedable "pseudo" random number generator, so that we can get predictable results in tests:
 
 ``` swift
-var lcrng = LCRNG(seed: 0)
-Gen.int(in: 0...9).run(using: &lcrng) // "8"
-Gen.int(in: 0...9).run(using: &lcrng) // "1"
-Gen.int(in: 0...9).run(using: &lcrng) // "7"
+var xoshiro = Xoshiro(seed: 0)
+Gen.int(in: 0...9).run(using: &xoshiro) // "1"
+Gen.int(in: 0...9).run(using: &xoshiro) // "0"
+Gen.int(in: 0...9).run(using: &xoshiro) // "4"
 
-lcrng.seed = 0
-Gen.int(in: 0...9).run(using: &lcrng) // "8"
-Gen.int(in: 0...9).run(using: &lcrng) // "1"
-Gen.int(in: 0...9).run(using: &lcrng) // "7"
+xoshiro = Xoshiro(seed: 0)
+Gen.int(in: 0...9).run(using: &xoshiro) // "1"
+Gen.int(in: 0...9).run(using: &xoshiro) // "0"
+Gen.int(in: 0...9).run(using: &xoshiro) // "4"
 ```
 
 This means you don't have to sacrifice testability when leveraging randomness in your application.
