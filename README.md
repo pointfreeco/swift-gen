@@ -1,6 +1,7 @@
 # 🎱 Gen
 
-[![Swift 5.1](https://img.shields.io/badge/swift-5.1-ED523F.svg?style=flat)](https://swift.org/download/)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fswift-gen%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/pointfreeco/swift-gen)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fswift-gen%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/pointfreeco/swift-gen)
 [![CI](https://github.com/pointfreeco/swift-nonempty/workflows/CI/badge.svg)](https://actions-badge.atrox.dev/pointfreeco/swift-gen/goto)
 [![@pointfreeco](https://img.shields.io/badge/contact-@pointfreeco-5AA9E7.svg?style=flat)](https://twitter.com/pointfreeco)
 
@@ -118,7 +119,7 @@ For more examples of using Gen to build complex randomness, see our [blog post](
 If you use [Carthage](https://github.com/Carthage/Carthage), you can add the following dependency to your `Cartfile`:
 
 ``` ruby
-github "pointfreeco/swift-gen" ~> 0.2
+github "pointfreeco/swift-gen" ~> 0.3
 ```
 
 ### CocoaPods
@@ -126,7 +127,7 @@ github "pointfreeco/swift-gen" ~> 0.2
 If your project uses [CocoaPods](https://cocoapods.org), just add the following to your `Podfile`:
 
 ``` ruby
-pod 'PointFree-Gen', '~> 0.2'
+pod 'PointFree-Gen', '~> 0.3'
 ```
 
 ### SwiftPM
@@ -135,7 +136,7 @@ If you want to use Gen in a project that uses [SwiftPM](https://swift.org/packag
 
 ``` swift
 dependencies: [
-  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.2.0")
+  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.3.0")
 ]
 ```
 
