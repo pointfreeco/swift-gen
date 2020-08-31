@@ -1,9 +1,8 @@
 # 🎱 Gen
 
+[![CI](https://github.com/pointfreeco/swift-nonempty/workflows/CI/badge.svg)](https://actions-badge.atrox.dev/pointfreeco/swift-gen/goto)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fswift-gen%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/pointfreeco/swift-gen)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fswift-gen%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/pointfreeco/swift-gen)
-[![CI](https://github.com/pointfreeco/swift-nonempty/workflows/CI/badge.svg)](https://actions-badge.atrox.dev/pointfreeco/swift-gen/goto)
-[![@pointfreeco](https://img.shields.io/badge/contact-@pointfreeco-5AA9E7.svg?style=flat)](https://twitter.com/pointfreeco)
 
 Composable, transformable, controllable randomness.
 
