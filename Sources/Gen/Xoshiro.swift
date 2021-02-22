@@ -35,3 +35,20 @@ public struct Xoshiro: RandomNumberGenerator {
     return result
   }
 }
+
+extension Xoshiro {
+  /// Initialize with a full state.
+  ///
+  /// Useful for getting an exact value from `next()` after multiple runs of the RNG.
+  @inlinable
+  public init(state: (UInt64, UInt64, UInt64, UInt64)) {
+    self.state = state
+  }
+
+  /// Get the latest internal state of the RNG.
+  ///
+  /// Can be used in combination with `init(state:)` to run the RNG from a specific state, e.g. in the context of a property-based test.
+  public var currentState: (UInt64, UInt64, UInt64, UInt64) {
+    state
+  }
+}
