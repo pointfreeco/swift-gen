@@ -113,24 +113,6 @@ For more examples of using Gen to build complex randomness, see our [blog post](
 
 ## Installation
 
-### Carthage
-
-If you use [Carthage](https://github.com/Carthage/Carthage), you can add the following dependency to your `Cartfile`:
-
-``` ruby
-github "pointfreeco/swift-gen" ~> 0.3
-```
-
-### CocoaPods
-
-If your project uses [CocoaPods](https://cocoapods.org), just add the following to your `Podfile`:
-
-``` ruby
-pod 'PointFree-Gen', '~> 0.3'
-```
-
-### SwiftPM
-
 If you want to use Gen in a project that uses [SwiftPM](https://swift.org/package-manager/), it's as simple as adding a `dependencies` clause to your `Package.swift`:
 
 ``` swift
