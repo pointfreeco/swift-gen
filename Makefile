@@ -1,12 +1,9 @@
-xcodeproj:
-	PF_DEVELOP=1 swift run xcodegen
-
 test-linux:
 	docker run \
 		--rm \
 		-v "$(PWD):$(PWD)" \
 		-w "$(PWD)" \
-		swift:5.2.3 \
+		swift:5.3 \
 		bash -c 'make test-swift'
 
 build-release-linux:
@@ -14,7 +11,7 @@ build-release-linux:
 		--rm \
 		-v "$(PWD):$(PWD)" \
 		-w "$(PWD)" \
-		swift:5.2.3 \
+		swift:5.3 \
 		bash -c 'make build-release-swift'
 
 test-macos:
@@ -29,7 +26,7 @@ test-ios:
 	set -o pipefail && \
 	xcodebuild test \
 		-scheme Gen_iOS \
-		-destination platform="iOS Simulator,name=iPhone XR,OS=12.2" \
+		-destination platform="iOS Simulator,name=iPhone 11 Pro Max" \
 		| xcpretty
 
 test-swift:
