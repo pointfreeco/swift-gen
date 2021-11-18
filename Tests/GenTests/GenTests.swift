@@ -16,7 +16,7 @@ final class GenTests: XCTestCase {
   }
 
   func testFlatMap() {
-    let gen = Gen.bool.flatMap { bool in bool ? .always(1) : .always(2) }
+    let gen = Gen.bool.flatMap { bool in bool ? 1 : 2 }
     XCTAssertEqual(2, gen.run(using: &xoshiro))
   }
 
@@ -49,19 +49,19 @@ final class GenTests: XCTestCase {
     let gen = Gen.frequency((1, .always(1)), (4, .always(nil)))
     XCTAssertEqual(
       [1, 1, nil, nil, nil, nil, nil, nil, nil, nil],
-      gen.array(of: .always(10)).run(using: &xoshiro))
+      gen.array(of: 10).run(using: &xoshiro))
   }
 
   func testOptional() {
     let gen = Gen.bool.optional
     XCTAssertEqual(
       [nil, nil, true, false, false, false, false, false, false, nil],
-      gen.array(of: .always(10)).run(using: &xoshiro))
+      gen.array(of: 10).run(using: &xoshiro))
   }
 
   struct Failure: Error, Equatable {}
   func testResult() {
-    let gen = Gen.bool.asResult(withFailure: .always(Failure())).array(of: .always(10))
+    let gen = Gen.bool.asResult(withFailure: .always(Failure())).array(of: 10)
     XCTAssertEqual(
       [
         .failure(.init()),

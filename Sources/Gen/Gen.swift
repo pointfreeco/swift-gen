@@ -557,3 +557,10 @@ extension Sequence {
     return self.traverse { $0 }
   }
 }
+
+extension Gen: ExpressibleByIntegerLiteral where Value == Int {
+  /// Instantiate `Gen<Int>.always(n)` from the integer literal `n`.
+  public init(integerLiteral value: Int) {
+    self = .always(value)
+  }
+}
