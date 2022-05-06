@@ -121,10 +121,6 @@ dependencies: [
 ]
 ```
 
-### Xcode Sub-project
-
-Submodule, clone, or download Gen, and drag `Gen.xcodeproj` into your project.
-
 ## Interested in learning more?
 
 These concepts (and more) are explored thoroughly in [Point-Free](https://www.pointfree.co), a video series exploring functional programming and Swift hosted by [Brandon Williams](https://github.com/mbrandonw) and [Stephen Celis](https://github.com/stephencelis).
