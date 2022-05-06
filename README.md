@@ -117,7 +117,7 @@ If you want to use Gen in a project that uses [SwiftPM](https://swift.org/packag
 
 ``` swift
 dependencies: [
-  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.3.0")
+  .package(url: "https://github.com/pointfreeco/swift-gen.git", from: "0.4.0")
 ]
 ```
 
