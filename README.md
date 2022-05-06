@@ -140,7 +140,7 @@ The design of this library was explored in the following [Point-Free](https://ww
 - [Episode 50](https://www.pointfree.co/episodes/ep50-generative-art-part-2): Generative Art: Part 2 🆓
 
 <a href="https://www.pointfree.co/episodes/ep30-composable-randomness">
-<img alt="video poster image" src="https://d1hf1soyumxcgv.cloudfront.net/0030-composable-randomness/poster.jpg" width="480">
+  <img alt="video poster image" src="https://d3rccdn33rt8ze.cloudfront.net/episodes/0030.jpeg" width="600">
 </a>
 
 ## License
