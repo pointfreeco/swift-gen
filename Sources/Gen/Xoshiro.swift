@@ -1,5 +1,5 @@
 /// An implementation of xoshiro256**: http://xoshiro.di.unimi.it.
-public struct Xoshiro: RandomNumberGenerator {
+public struct Xoshiro: RandomNumberGenerator, Sendable {
   @usableFromInline
   var state: (UInt64, UInt64, UInt64, UInt64)
 

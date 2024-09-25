@@ -4,7 +4,7 @@
   message:
     "LCRNG has been deprecated due to instability across Swift versions. Use Xoshiro for seedable randomness, instead."
 )
-public struct LCRNG: RandomNumberGenerator {
+public struct LCRNG: RandomNumberGenerator, Sendable {
   public var seed: UInt64
 
   @inlinable
