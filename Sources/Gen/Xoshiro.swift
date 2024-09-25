@@ -1,5 +1,5 @@
 /// An implementation of xoshiro256**: http://xoshiro.di.unimi.it.
-public struct Xoshiro: RandomNumberGenerator, Sendable {
+public struct Xoshiro: RandomNumberGenerator {
   @usableFromInline
   var state: (UInt64, UInt64, UInt64, UInt64)
 
@@ -52,3 +52,7 @@ extension Xoshiro {
     state
   }
 }
+
+#if swift(>=5.5)
+extension Xoshiro: Sendable {}
+#endif
