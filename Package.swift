@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.9
 import Foundation
 import PackageDescription
 
@@ -8,7 +8,11 @@ let package = Package(
     .library(name: "Gen", targets: ["Gen"])
   ],
   targets: [
-    .target(name: "Gen", dependencies: []),
+    .target(
+      name: "Gen",
+      dependencies: [],
+      swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
+    ),
     .testTarget(name: "GenTests", dependencies: ["Gen"]),
   ]
 )

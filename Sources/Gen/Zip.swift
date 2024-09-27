@@ -1,4 +1,19 @@
+/// Combines two generators into a single one.
+///
+/// - Parameters:
+///   - a: A generator of `A`s.
+///   - b: A generator of `B`s.
+/// - Returns: A generator of `(A, B)` pairs.
 @inlinable
+@Sendable
+public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
+  return Gen<(A, B)> { rng in
+    (a._run(&rng), b._run(&rng))
+  }
+}
+
+@inlinable
+@Sendable
 public func zip<A, B, C>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -10,6 +25,7 @@ public func zip<A, B, C>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -22,6 +38,7 @@ public func zip<A, B, C, D>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D, E>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -35,6 +52,7 @@ public func zip<A, B, C, D, E>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D, E, F>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -49,6 +67,7 @@ public func zip<A, B, C, D, E, F>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D, E, F, G>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -64,6 +83,7 @@ public func zip<A, B, C, D, E, F, G>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D, E, F, G, H>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -80,6 +100,7 @@ public func zip<A, B, C, D, E, F, G, H>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D, E, F, G, H, I>(
   _ a: Gen<A>,
   _ b: Gen<B>,
@@ -97,6 +118,7 @@ public func zip<A, B, C, D, E, F, G, H, I>(
 }
 
 @inlinable
+@Sendable
 public func zip<A, B, C, D, E, F, G, H, I, J>(
   _ a: Gen<A>,
   _ b: Gen<B>,

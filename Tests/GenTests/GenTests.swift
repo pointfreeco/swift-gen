@@ -5,7 +5,7 @@ final class GenTests: XCTestCase {
   var xoshiro = Xoshiro(seed: 0)
 
   func testMap() {
-    let gen = Gen.bool.map(String.init)
+    let gen = Gen.bool.map { String($0) }
     XCTAssertEqual("false", gen.run(using: &xoshiro))
   }
 
@@ -101,7 +101,7 @@ final class GenTests: XCTestCase {
   }
 
   func testTraverse() {
-    let gen = [Gen.int(in: 1...100), Gen.int(in: 1_000...1_000_000)].traverse(String.init)
+    let gen = [Gen.int(in: 1...100), Gen.int(in: 1_000...1_000_000)].traverse { String($0) }
     XCTAssertEqual(["15", "18473"], gen.run(using: &xoshiro))
   }
 
