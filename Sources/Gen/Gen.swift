@@ -13,7 +13,6 @@ public struct Gen<Value: Sendable>: Sendable {
   /// - Parameter rng: A random number generator.
   /// - Returns: A random value.
   @inlinable
-  @Sendable
   public func run<G: RandomNumberGenerator>(using rng: inout G) -> Value {
     if var arng = rng as? AnyRandomNumberGenerator {
       defer { rng = arng as! G }
@@ -28,7 +27,6 @@ public struct Gen<Value: Sendable>: Sendable {
   ///
   /// - Returns: A random value.
   @inlinable
-  @Sendable
   public func run() -> Value {
     var rng = SystemRandomNumberGenerator()
     return self.run(using: &rng)
@@ -41,7 +39,6 @@ extension Gen {
   /// - Parameter value: A constant value.
   /// - Returns: A generator of a constant value.
   @inlinable
-  @Sendable
   public static func always(_ value: Value) -> Gen {
     return Gen { _ in value }
   }
@@ -51,7 +48,6 @@ extension Gen {
   /// - Parameter transform: A function that transforms `Value`s into `NewValue`s.
   /// - Returns: A generator of `NewValue`s.
   @inlinable
-  @Sendable
   public func map<NewValue>(
     _ transform: @escaping @Sendable (Value) -> NewValue
   ) -> Gen<NewValue> {
@@ -65,7 +61,6 @@ extension Gen {
   /// - Parameter transform: A function that transforms `Value`s into a generator of `NewValue`s.
   /// - Returns: A generator of `NewValue`s.
   @inlinable
-  @Sendable
   public func flatMap<NewValue>(
     _ transform: @escaping @Sendable (Value) -> Gen<NewValue>
   ) -> Gen<NewValue> {
@@ -79,7 +74,6 @@ extension Gen {
   /// - Parameter transform: A closure that accepts an element of this sequence as its argument and returns an optional value.
   /// - Returns: A generator of the non-nil results of calling the given transformation with a value of the generator.
   @inlinable
-  @Sendable
   public func compactMap<NewValue>(
     _ transform: @escaping @Sendable (Value) -> NewValue?
   ) -> Gen<NewValue> {
@@ -97,21 +91,18 @@ extension Gen {
   /// - Parameter predicate: A predicate.
   /// - Returns: A generator of values that match the predicate.
   @inlinable
-  @Sendable
   public func filter(_ predicate: @escaping @Sendable (Value) -> Bool) -> Gen<Value> {
     return self.compactMap { predicate($0) ? $0 : nil }
   }
 
   /// Uses a weighted distribution to randomly select one of the generators in the list.
   @inlinable
-  @Sendable
   public static func frequency(_ distribution: (Int, Gen)...) -> Gen {
     return frequency(distribution)
   }
 
   /// Uses a weighted distribution to randomly select one of the generators in the list.
   @inlinable
-  @Sendable
   public static func frequency(_ distribution: [(Int, Gen)]) -> Gen {
     // TODO: Add `!distribution.isEmpty` precondition?
     let generators = distribution.flatMap { Array(repeating: $1, count: $0) }
@@ -123,25 +114,23 @@ extension Gen {
   }
 }
 
-extension Gen where Value: FixedWidthInteger & Sendable {
+extension Gen where Value: FixedWidthInteger {
   /// Returns a generator of random values within the specified range.
   ///
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func int(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in Value.random(in: range, using: &rng) }
   }
 }
 
-extension Gen where Value: BinaryFloatingPoint & Sendable, Value.RawSignificand: FixedWidthInteger {
+extension Gen where Value: BinaryFloatingPoint, Value.RawSignificand: FixedWidthInteger {
   /// Returns a generator of random values within the specified range.
   ///
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func float(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in Value.random(in: range, using: &rng) }
   }
@@ -153,7 +142,6 @@ extension Gen<Int> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func int(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -165,7 +153,6 @@ extension Gen<Int8> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func int8(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -177,7 +164,6 @@ extension Gen<Int16> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func int16(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -189,7 +175,6 @@ extension Gen<Int32> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func int32(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -201,7 +186,6 @@ extension Gen<Int64> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func int64(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -213,7 +197,6 @@ extension Gen<UInt> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func uint(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -225,7 +208,6 @@ extension Gen<UInt8> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func uint8(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -237,7 +219,6 @@ extension Gen<UInt16> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func uint16(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -249,7 +230,6 @@ extension Gen<UInt32> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func uint32(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -261,7 +241,6 @@ extension Gen<UInt64> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func uint64(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -273,7 +252,6 @@ extension Gen<Double> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func double(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -285,7 +263,6 @@ extension Gen<Float> {
   /// - Parameter range: The range in which to create a random value. `range` must be finite.
   /// - Returns: A generator of random values within the bounds of range.
   @inlinable
-  @Sendable
   public static func float32(in range: ClosedRange<Value>) -> Gen {
     return Gen { rng in .random(in: range, using: &rng) }
   }
@@ -298,7 +275,6 @@ extension Gen<Float> {
     /// - Parameter range: The range in which to create a random value. `range` must be finite.
     /// - Returns: A generator of random values within the bounds of range.
     @inlinable
-    @Sendable
     public static func float80(in range: ClosedRange<Value>) -> Gen {
       return Gen { rng in .random(in: range, using: &rng) }
     }
@@ -314,7 +290,6 @@ extension Gen<Float> {
     /// - Parameter range: The range in which to create a random value. `range` must be finite.
     /// - Returns: A generator of random values within the bounds of range.
     @inlinable
-    @Sendable
     public static func cgFloat(in range: ClosedRange<Value>) -> Gen {
       return Gen { rng in .random(in: range, using: &rng) }
     }
@@ -331,7 +306,6 @@ extension Gen {
   ///
   /// - Parameter collection: A collection.
   @inlinable
-  @Sendable
   public static func element<C>(of collection: C) -> Gen
   where C: Collection & Sendable, Value == C.Element? {
     return Gen { rng in collection.randomElement(using: &rng) }
@@ -341,7 +315,6 @@ extension Gen {
   ///
   /// - Parameter collection: A collection.
   @inlinable
-  @Sendable
   public static func shuffled<C>(_ collection: C) -> Gen
   where C: Collection & Sendable, Value == [C.Element] {
     return Gen { rng in collection.shuffled(using: &rng) }
@@ -352,13 +325,13 @@ extension Gen where Value: Collection, Value.Element: Sendable {
   /// Produces a generator of random elements of this generator's collection.
   @inlinable
   public var element: Gen<Value.Element?> {
-    return self.flatMap(Gen<Value.Element?>.element)
+    self.flatMap { Gen<Value.Element?>.element(of: $0) }
   }
 
   /// Produces a generator of shuffled arrays of this generator's collection.
   @inlinable
   public var shuffled: Gen<[Value.Element]> {
-    return self.flatMap(Gen<[Value.Element]>.shuffled)
+    self.flatMap { Gen<[Value.Element]>.shuffled($0) }
   }
 }
 
@@ -376,7 +349,6 @@ extension Gen {
   /// - Parameter count: The size of the random collection.
   /// - Returns: A generator of collections.
   @inlinable
-  @Sendable
   public func collection<C>(of count: Gen<Int>) -> Gen<C>
   where C: RangeReplaceableCollection, C.Element == Value {
     return count.flatMap { count in
@@ -398,7 +370,6 @@ extension Gen {
   /// - Parameter count: The size of the random array.
   /// - Returns: A generator of arrays.
   @inlinable
-  @Sendable
   public func array(of count: Gen<Int>) -> Gen<[Value]> {
     return count.flatMap { count in
       guard count > 0 else { return .always([]) }
@@ -418,7 +389,6 @@ extension Gen {
   /// - Parameter count: The size of the random dictionary.
   /// - Returns: A generator of dictionaries.
   @inlinable
-  @Sendable
   public func dictionary<K, V>(ofAtMost count: Gen<Int>) -> Gen<[K: V]> where Value == (K, V) {
     return count.flatMap { count in
       guard count > 0 else { return .always([:]) }
@@ -439,7 +409,6 @@ extension Gen {
   /// - Parameter count: The size of the random set.
   /// - Returns: A generator of sets.
   @inlinable
-  @Sendable
   public func set<S>(ofAtMost count: Gen<Int>) -> Gen<S> where S: SetAlgebra, S.Element == Value {
     return count.flatMap { count in
       guard count > 0 else { return .always(S()) }
@@ -470,7 +439,6 @@ extension Gen {
   ///
   /// - Returns: A generator of failable values.
   @inlinable
-  @Sendable
   public func asResult<Failure>(withFailure gen: Gen<Failure>) -> Gen<Result<Value, Failure>> {
     return Gen<Result<Value, Failure>>.frequency(
       (1, gen.map { Result.failure($0) }),
@@ -485,7 +453,6 @@ extension Gen where Value: Hashable {
   /// - Parameter count: The size of the random set.
   /// - Returns: A generator of sets.
   @inlinable
-  @Sendable
   public func set(ofAtMost count: Gen<Int>) -> Gen<Set<Value>> {
     return count.flatMap { count in
       guard count > 0 else { return .always([]) }
@@ -506,7 +473,6 @@ extension Gen<UnicodeScalar> {
   /// - Parameter range: The range in which to create a random unicode scalar. `range` must be finite.
   /// - Returns: A generator of random unicode scalars within the bounds of range.
   @inlinable
-  @Sendable
   public static func unicodeScalar(in range: ClosedRange<Value>) -> Gen {
     return Gen<UInt32>
       .int(in: range.lowerBound.value...range.upperBound.value)
@@ -521,7 +487,6 @@ extension Gen<Character> {
   /// - Parameter range: The range in which to create a random character. `range` must be finite.
   /// - Returns: A generator of random characters within the bounds of range.
   @inlinable
-  @Sendable
   public static func character(in range: ClosedRange<Value>) -> Gen {
     return Gen<UnicodeScalar>
       .unicodeScalar(
@@ -564,7 +529,6 @@ extension Gen<Character> {
   /// - Parameter count: The size of the random string.
   /// - Returns: A generator of strings.
   @inlinable
-  @Sendable
   public func string(of count: Gen<Int>) -> Gen<String> {
     return self
       .map { String($0) }
