@@ -29,9 +29,7 @@ jobs:
     container: swift:${{ matrix.swift }}
     steps:
     - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: apt-get update && apt-get install -y make
     - name: Run tests
-      run: make test-linux
-    - name: Build for release
-      run: make build-release-linux
+      run: swift test --parallel
+    - name: Run tests (release)
+      run: swift test -c release --parallel
