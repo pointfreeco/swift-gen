@@ -28,3 +28,5 @@ jobs:
       run: make test-linux
     - name: Build for release
       run: make build-release-linux
+    - name: Run Android tests
+      uses: skiptools/swift-android-action@v2
