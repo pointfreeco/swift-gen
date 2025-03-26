@@ -6,10 +6,10 @@ public struct Xoshiro: RandomNumberGenerator {
   @inlinable
   public init() {
     self.state = zip(
-      .int(in: .min ... .max),
-      .int(in: .min ... .max),
-      .int(in: .min ... .max),
-      .int(in: .min ... .max)
+      Gen<UInt64>.int(in: .min ... .max),
+      Gen<UInt64>.int(in: .min ... .max),
+      Gen<UInt64>.int(in: .min ... .max),
+      Gen<UInt64>.int(in: .min ... .max)
     )
     .run()
   }

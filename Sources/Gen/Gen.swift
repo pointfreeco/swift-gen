@@ -53,19 +53,6 @@ extension Gen {
   }
 }
 
-/// Combines two generators into a single one.
-///
-/// - Parameters:
-///   - a: A generator of `A`s.
-///   - b: A generator of `B`s.
-/// - Returns: A generator of `(A, B)` pairs.
-@inlinable
-public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
-  return Gen<(A, B)> { rng in
-    (a._run(&rng), b._run(&rng))
-  }
-}
-
 extension Gen {
   /// Transforms a generator of `Value`s into a generator of `NewValue`s by transforming a value into a generator of `NewValue`s.
   ///
