@@ -13,18 +13,23 @@ jobs:
     name: MacOS
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Run tests
       run: make test-swift
     - name: Run tests
       run: make build-release-swift
 
   ubuntu:
-    name: Ubuntu
+    strategy: 
+      matrix:
+        swift:
+          - '5.9'
+    name: Ubuntu (Swift ${{ matrix.swift }})
     runs-on: ubuntu-latest
+    container: swift:${{ matrix.swift }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Run tests
-      run: make test-linux
-    - name: Build for release
-      run: make build-release-linux
+      run: swift test --parallel
+    - name: Run tests (release)
+      run: swift test -c release --parallel

@@ -1,3 +1,16 @@
+/// Combines two generators into a single one.
+///
+/// - Parameters:
+///   - a: A generator of `A`s.
+///   - b: A generator of `B`s.
+/// - Returns: A generator of `(A, B)` pairs.
+@inlinable
+public func zip<A, B>(_ a: Gen<A>, _ b: Gen<B>) -> Gen<(A, B)> {
+  return Gen<(A, B)> { rng in
+    (a._run(&rng), b._run(&rng))
+  }
+}
+
 @inlinable
 public func zip<A, B, C>(
   _ a: Gen<A>,
