@@ -52,3 +52,7 @@ extension Xoshiro {
     state
   }
 }
+
+#if swift(>=5.5)
+extension Xoshiro: Sendable {}
+#endif
