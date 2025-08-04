@@ -18,3 +18,7 @@ public struct LCRNG: RandomNumberGenerator {
     return seed
   }
 }
+
+#if swift(>=5.5)
+extension LCRNG: Sendable {}
+#endif
